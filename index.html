@@ -5,26 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Perimenopause Performance System: Protect Your Edge Without Disclosure</title>
 
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'PLACEHOLDER_PIXEL_ID');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=PLACEHOLDER_PIXEL_ID&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
@@ -142,8 +128,14 @@
         }
 
         @keyframes countUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .trust-section {
@@ -232,19 +224,19 @@
         }
 
         .category-card {
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,215,0,0.2);
+            border: 1px solid rgba(255, 215, 0, 0.2);
             transition: all 0.2s ease;
         }
 
         .category-card:hover {
-            border-color: rgba(255,215,0,0.5);
-            background: rgba(255,255,255,0.12);
+            border-color: rgba(255, 215, 0, 0.5);
+            background: rgba(255, 255, 255, 0.12);
         }
 
         .last-section .badge-icon {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 40px;
             padding: 0.25rem 0.75rem;
             backdrop-filter: blur(4px);
@@ -268,7 +260,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0, 0, 0, 0.9);
             z-index: 1002;
             justify-content: center;
             align-items: center;
@@ -289,7 +281,7 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
         .book-preview-iframe-wrapper {
@@ -329,7 +321,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
         }
 
         .book-preview-done-btn:hover {
@@ -351,14 +343,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .video-player-wrapper {
             background: #0f172a;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             border: 1px solid #334155;
         }
 
@@ -395,16 +387,6 @@
         }
     </style>
     <base target="_blank">
-    <script>
-    (function () {
-      const urlParams = new URLSearchParams(window.location.search);
-      const fbclid = urlParams.get('fbclid');
-      if (fbclid) {
-        document.cookie = "_fbc=" + fbclid + "; path=/; max-age=2592000";
-      }
-    })();
-    </script>
-<base target="_blank">
 </head>
 <body class="antialiased text-gray-800">
 
@@ -413,11 +395,7 @@
         <div class="book-preview-content" onclick="event.stopPropagation()">
             <button class="book-preview-close" onclick="closeBookPreview()"><i class="fas fa-times text-gray-700"></i></button>
             <div class="book-preview-iframe-wrapper">
-                <iframe src="https://simplebooklet.com/embed.php?wpKey=PLACEHOLDER_PREVIEW_KEY&source=embed"
-                        allowfullscreen
-                        loading="lazy"
-                        title="Book Preview"
-                        style="border:0; width:100%; height:100%;"></iframe>
+                <iframe src="https://simplebooklet.com/embed.php?wpKey=PLACEHOLDER_PREVIEW_KEY&source=embed" allowfullscreen loading="lazy" title="Book Preview" style="border:0; width:100%; height:100%;"></iframe>
             </div>
             <div class="book-preview-footer">
                 <button class="book-preview-done-btn" onclick="closeBookPreview()"><i class="fas fa-check-circle"></i> Done</button>
@@ -481,7 +459,7 @@
 
                     <div class="md:hidden mb-8">
                         <div class="relative">
-                            <img src="Images/perimenopause.png" alt="Professional woman at work" class="rounded-xl shadow-2xl w-full mb-6" style="max-height: 500px; object-fit: cover;" loading="lazy">
+                            <img src="images/perimenopause.png" alt="Professional woman at work" class="rounded-xl shadow-2xl w-full mb-6" style="max-height: 500px; object-fit: cover;" loading="lazy">
                         </div>
                     </div>
 
@@ -513,7 +491,7 @@
                 </div>
                 <div class="md:w-1/2 flex justify-center hidden md:block">
                     <div class="relative">
-                        <img src="Images/perimenopause.png" alt="Professional woman at work" class="rounded-xl shadow-2xl w-full" style="max-height: 600px; object-fit: cover;" loading="eager">
+                        <img src="images/perimenopause.png" alt="Professional woman at work" class="rounded-xl shadow-2xl w-full" style="max-height: 600px; object-fit: cover;" loading="eager">
                         <p class="text-center text-sm text-gray-600 mt-2 italic">The invisible performance cost of perimenopause in high-stakes environments</p>
                     </div>
                 </div>
@@ -521,13 +499,13 @@
         </div>
     </section>
 
-    <!-- Video Section (moved from Problem Agitation - swapped with Book Preview) -->
+    <!-- Video Section -->
     <section class="py-12 px-4 bg-gray-50 border-t border-b border-gray-200">
         <div class="container mx-auto max-w-4xl">
             <div class="mb-8">
                 <h3 class="text-2xl font-bold text-center mb-6">For decades, western medicine told women to "expect hot flashes." They completely ignored the brain.</h3>
                 <div class="video-player-wrapper max-w-3xl mx-auto">
-                    <video controls poster="Images/perimenopause.png" preload="metadata" style="width:100%;display:block;border-radius:0;">
+                    <video controls poster="images/perimenopause.png" preload="metadata" style="width:100%;display:block;border-radius:0;">
                         <source src="Perimenopausevideo.mp4" type="video/mp4">
                         Your browser does not support the video player.
                     </video>
@@ -561,7 +539,7 @@
                 <a href="#pricing" class="cta-primary font-bold py-4 px-8 rounded-lg text-center inline-block">
                     Claim My Performance System Now
                 </a>
-                <p class="mt-3 text-gray-600">The $47 you spend today could protect $50,000 in lifetime earnings tomorrow</p>
+                <p class="mt-3 text-gray-600">The $47 you invest today could protect $50,000 in lifetime earnings tomorrow</p>
             </div>
         </div>
     </section>
@@ -672,7 +650,7 @@
             </div>
 
             <div class="bg-white p-8 rounded-xl shadow-md text-center max-w-2xl mx-auto">
-                <h3 class="text-2xl font-bold mb-4">Total Performance Value: $674 Or <span class="line-through text-gray-500">PRICELESS</span></h3>
+                <h3 class="text-2xl font-bold mb-4">Total Value: $479 Or <span class="line-through text-gray-500">PRICELESS</span></h3>
                 <p class="text-gray-600 mb-6">What is your professional reputation worth? Your earning trajectory? Your peace of mind in the rooms that matter?</p>
 
                 <div class="mb-3">
@@ -683,7 +661,7 @@
 
                 <div class="text-center mb-2">
                     <a href="#pricing" class="cta-blue font-bold py-4 px-8 rounded-lg text-center inline-block">
-                        CLAIM IT ALL NOW – $47
+                        CLAIM MY PERFORMANCE SYSTEM - $47
                     </a>
                 </div>
 
@@ -699,7 +677,7 @@
         </div>
     </section>
 
-    <!-- Problem Agitation Section (now contains Book Preview instead of video) -->
+    <!-- Problem Agitation Section -->
     <section class="py-20 bg-white px-4">
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">The <span class="text-red-600">Concealment Paradox</span> No One Talks About</h2>
@@ -753,7 +731,7 @@
                 </div>
             </div>
 
-            <!-- Book Preview (moved here from original Book Preview section) -->
+            <!-- Book Preview -->
             <div class="py-8 px-4 bg-gray-50 border-t border-b border-gray-200 rounded-xl mb-8">
                 <div class="text-center">
                     <h2 class="text-2xl md:text-3xl font-bold mb-4">📖 Book Preview</h2>
@@ -766,7 +744,7 @@
         </div>
     </section>
 
-    <!-- Authority & Warning Section: Why Current Solutions Fail -->
+    <!-- Authority & Warning Section -->
     <section class="py-20 bg-gray-100 px-4">
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-3xl font-bold text-center mb-6">Why HR, Wellness Apps, and Doctor's Books Can't Save Your Career</h2>
@@ -826,15 +804,15 @@
     <section class="py-20 bg-white px-4">
         <div class="container mx-auto max-w-6xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-2">What Professional Women Say:</h2>
-            <p class="text-center text-gray-600 mb-8">Real experiences from women who needed their careers to survive this transition</p>
+            <p class="text-center text-gray-600 mb-8">Experiences from women who needed their careers to survive this transition.</p>
 
             <div class="testimonial-carousel mb-12">
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
-                        <img src="https://i.ibb.co/placeholder1.jpg" alt="Sarah K." class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
+                        <img src="images/image1.jpg" alt="Sarah Mitchell" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
                         <div>
-                            <p class="font-bold">Sarah K.</p>
-                            <p class="text-sm text-gray-500">Senior Consultant, London</p>
+                            <p class="font-bold">Sarah Mitchell</p>
+                            <p class="text-sm text-gray-500">Senior Consultant, California</p>
                         </div>
                     </div>
                     <div class="flex mb-2">
@@ -846,9 +824,9 @@
 
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
-                        <img src="https://i.ibb.co/placeholder2.jpg" alt="Dr. Amina R." class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
+                        <img src="images/image2.jpg" alt="Amina Reeves" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
                         <div>
-                            <p class="font-bold">Dr. Amina R.</p>
+                            <p class="font-bold">Amina Reeves</p>
                             <p class="text-sm text-gray-500">Medical Director, Toronto</p>
                         </div>
                     </div>
@@ -861,9 +839,9 @@
 
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
-                        <img src="https://i.ibb.co/placeholder3.jpg" alt="Claire M." class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
+                        <img src="images/image3.jpg" alt="Claire Morrison" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
                         <div>
-                            <p class="font-bold">Claire M.</p>
+                            <p class="font-bold">Claire Morrison</p>
                             <p class="text-sm text-gray-500">Finance Director, Sydney</p>
                         </div>
                     </div>
@@ -876,9 +854,9 @@
 
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
-                        <img src="https://i.ibb.co/placeholder4.jpg" alt="Jennifer T." class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
+                        <img src="images/image4.jpg" alt="Jennifer Taylor" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
                         <div>
-                            <p class="font-bold">Jennifer T.</p>
+                            <p class="font-bold">Jennifer Taylor</p>
                             <p class="text-sm text-gray-500">Barrister, Manchester</p>
                         </div>
                     </div>
@@ -886,14 +864,14 @@
                         <i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="far fa-star text-yellow-400"></i>
                     </div>
                     <p class="text-gray-700 text-sm">In my profession, a verbal lapse in court is not a small thing. The strategic deferral scripts and the word-recovery pivots have saved me multiple times. I don't use them because I'm weak. I use them because I'm precise.</p>
-                    <p class="text-xs text-gray-400 mt-2">2 weeks ago</p>
+                    <p class="text-xs text-gray-400 mt-2">yesterday</p>
                 </div>
 
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
-                        <img src="https://i.ibb.co/placeholder5.jpg" alt="Priya S." class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
+                        <img src="images/image5.jpg" alt="Priya Sharma" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
                         <div>
-                            <p class="font-bold">Priya S.</p>
+                            <p class="font-bold">Priya Sharma</p>
                             <p class="text-sm text-gray-500">Tech Lead, Melbourne</p>
                         </div>
                     </div>
@@ -906,9 +884,9 @@
 
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
-                        <img src="https://i.ibb.co/placeholder6.jpg" alt="Helen W." class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
+                        <img src="images/image6.jpg" alt="Helen Walker" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
                         <div>
-                            <p class="font-bold">Helen W.</p>
+                            <p class="font-bold">Helen Walker</p>
                             <p class="text-sm text-gray-500">Operations Director, Edinburgh</p>
                         </div>
                     </div>
@@ -921,9 +899,9 @@
 
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
-                        <img src="https://i.ibb.co/placeholder7.jpg" alt="Rachel D." class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
+                        <img src="images/image7.jpg" alt="Rachel Donovan" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
                         <div>
-                            <p class="font-bold">Rachel D.</p>
+                            <p class="font-bold">Rachel Donovan</p>
                             <p class="text-sm text-gray-500">Marketing VP, Vancouver</p>
                         </div>
                     </div>
@@ -936,9 +914,9 @@
 
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
-                        <img src="https://i.ibb.co/placeholder8.jpg" alt="Diane L." class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
+                        <img src="images/image8.jpg" alt="Diane Lawrence" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
                         <div>
-                            <p class="font-bold">Diane L.</p>
+                            <p class="font-bold">Diane Lawrence</p>
                             <p class="text-sm text-gray-500">Partner, Law Firm, Brisbane</p>
                         </div>
                     </div>
@@ -946,14 +924,14 @@
                         <i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i>
                     </div>
                     <p class="text-gray-700 text-sm">The sleep-to-performance chapter changed my life. Not my sleep — my life. Understanding that a fragmented night produces a specific cognitive signature the next day, and having the exact protocol for that morning, removed the panic that was making everything worse.</p>
-                    <p class="text-xs text-gray-400 mt-2">2 weeks ago</p>
+                    <p class="text-xs text-gray-400 mt-2">yesterday</p>
                 </div>
             </div>
 
             <div class="text-center">
                 <p class="text-red-600 font-bold text-xl mb-4 counter">124 Women Bought This Week</p>
                 <a href="#pricing" class="cta-primary font-bold py-4 px-8 rounded-lg text-center inline-block">
-                    Get Instant Access - $47
+                    ACCESS THE SYSTEM NOW – $47
                 </a>
                 <p class="mt-3 text-gray-600">Less than 1% of what you could lose in a single quarter of unmanaged presenteeism</p>
             </div>
@@ -978,37 +956,63 @@
                     <ul class="space-y-4 mb-8">
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <span><strong>The Fog-Day Playbook</strong> — Red/amber/green assessment & supported thinking protocols</span>
+                            <span><strong>"The Busy Woman's Perimenopause" Ebook</strong></span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <span><strong>Anxiety Spiral Interrupt System</strong> — 5-minute CBT-based autonomic reset</span>
+                            <span><strong>An Exclusive Podcast Episode</strong></span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <span><strong>Sleep-to-Performance Recovery</strong> — CBT-I derived next-day clarity protocols</span>
+                            <span><strong>Private Community</strong></span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <span><strong>Cognitive Offloading OS</strong> — External brain architecture & meeting spines</span>
+                            <div>
+                                <span><strong>The Fog-Day Playbook</strong></span>
+                                <p class="text-sm text-gray-600">Red/amber/green assessment & supported thinking protocols is included in ebook</p>
+                            </div>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <span><strong>Meeting Survival Scripts</strong> — Strategic deferrals, boundary scripts, recovery language</span>
+                            <div>
+                                <span><strong>Anxiety Spiral Interrupt System</strong></span>
+                                <p class="text-sm text-gray-600">5-minute CBT-based autonomic reset is included in ebook</p>
+                            </div>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <span><strong>Managing Up Without Disclosure</strong> — Scope protection & perception repair</span>
+                            <div>
+                                <span><strong>Sleep-to-Performance Recovery</strong></span>
+                                <p class="text-sm text-gray-600">CBT-I derived next-day clarity protocols is included in ebook</p>
+                            </div>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <span><strong>Private Community + Templates</strong> — Checklists & community resources</span>
+                            <div>
+                                <span><strong>Cognitive Offloading OS</strong></span>
+                                <p class="text-sm text-gray-600">External brain architecture & meeting spines is included in ebook</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <div>
+                                <span><strong>Meeting Survival Scripts</strong></span>
+                                <p class="text-sm text-gray-600">Strategic deferrals, boundary scripts, recovery language is included in ebook</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <div>
+                                <span><strong>Managing Up Without Disclosure</strong></span>
+                                <p class="text-sm text-gray-600">Scope protection & perception repair is included in ebook</p>
+                            </div>
                         </li>
                     </ul>
 
                     <div class="text-center mb-6">
                         <a href="#" class="cta-blue font-bold py-4 px-8 rounded-lg text-center inline-block w-full text-xl">
-                            GET PROTECTED NOW - $47
+                            GET COMPLETE SYSTEM - $47
                         </a>
                     </div>
 
@@ -1154,17 +1158,16 @@
             <div class="flex flex-wrap items-center justify-center gap-4 text-sm mb-6">
                 <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full flex items-center"><i class="fas fa-shield-alt mr-2"></i>30-Day Money Back Guarantee</span>
                 <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full flex items-center"><i class="fas fa-lock mr-2"></i>Secure SSL Encryption</span>
-                <span class="bg-purple-100 text-purple-700 px-4 py-2 rounded-full flex items-center"><i class="fas fa-users mr-2"></i>3,200+ Professional Women</span>
+                <span class="bg-purple-100 text-purple-700 px-4 py-2 rounded-full flex items-center"><i class="fas fa-users mr-2"></i>Brought by 3,200+ Professional Women</span>
             </div>
 
             <div class="p-4 bg-yellow-50 rounded-lg border border-yellow-200 max-w-lg mx-auto">
-                <p class="font-bold text-yellow-800"><i class="fas fa-clock mr-2 text-yellow-600"></i>Your professional reputation does not wait. Your preparation shouldn't either.</p>
+                <p class="font-bold text-yellow-800"><i class="fas fa-clock mr-2 text-yellow-600"></i>Your Peak Earning Years Are Happening Right Now.<br>Don't Let these Hormones Dictate this Crucial Period of your Life.</p>
             </div>
         </div>
     </section>
 
     <script>
-        // FAQ toggle functionality
         document.querySelectorAll('#faq button').forEach(button => {
             button.addEventListener('click', () => {
                 const content = button.nextElementSibling;
@@ -1174,20 +1177,19 @@
             });
         });
 
-        // Book preview popup functions
         function openBookPreview() {
             document.getElementById('bookPreviewPopup').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
         function closeBookPreview(event) {
-            if (!event || event.target.id === 'bookPreviewPopup' || event.target.closest('.book-preview-close') || event.target.closest('.book-preview-done-btn')) {
+            if (!event || event.target.id === 'bookPreviewPopup' || event.target.closest('.book-preview-close') || event
+                .target.closest('.book-preview-done-btn')) {
                 document.getElementById('bookPreviewPopup').classList.remove('active');
                 document.body.style.overflow = '';
             }
         }
 
-        // Dynamic counter
         document.addEventListener('DOMContentLoaded', () => {
             const counters = document.querySelectorAll('.counter');
             const baseCount = 124;
@@ -1198,14 +1200,13 @@
                 counter.textContent = `${finalCount} Women Bought This Week`;
             });
 
-            // Smooth scrolling
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+                anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
-                    if(targetId === '#') return;
+                    if (targetId === '#') return;
                     const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
+                    if (targetElement) {
                         window.scrollTo({
                             top: targetElement.offsetTop - 20,
                             behavior: 'smooth'
