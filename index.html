@@ -5,33 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Perimenopause Performance System: Protect Your Edge Without Disclosure</title>
 
-    <!-- Preconnect & DNS prefetch to reduce connection latency -->
-    <link rel="preconnect" href="https://www.checkout-ds24.com" crossorigin>
-    <link rel="dns-prefetch" href="https://www.checkout-ds24.com">
-    <!-- Prefetch the actual checkout page (silent background download) -->
-    <link rel="prefetch" href="https://www.checkout-ds24.com/product/692610" as="document">
-
-    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <!-- Preconnect & DNS prefetch for faster connections -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://cdn.tailwindcss.com" defer></script>
+    <link rel="preconnect" href="https://www.checkout-ds24.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.checkout-ds24.com">
+    <link rel="dns-prefetch" href="https://www.digistore24-scripts.com">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+    <!-- Prefetch the checkout page (silent background download) -->
+    <link rel="prefetch" href="https://www.checkout-ds24.com/product/692610" as="document">
+
+    <!-- Font loading: non‑blocking, with instant system fallback -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+
+    <!-- Font Awesome (non‑blocking, already optimized) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
 
-    <!-- Promocode Scripts -->
-    <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
-    <script type="text/javascript">
-        digistorePromocode({
-            "product_id": 692610,
-            "adjust_domain": true
-        });
-    </script>
+    <!-- Tailwind CSS (deferred, non‑blocking) -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
 
+    <!-- Preload hero image for LCP -->
+    <link rel="preload" as="image" href="images/perimenopause.webp" fetchpriority="high">
+
+    <!-- Inline critical CSS – everything needed for the first paint -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
+        /* System font stack ensures text is visible before Inter loads */
         body {
-            font-family: 'Inter', Arial, sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Inter';
+            margin: 0;
             scroll-behavior: smooth;
             padding-bottom: 50px;
         }
@@ -407,16 +412,21 @@
 </head>
 <body class="antialiased text-gray-800">
 
-    <!-- Begin of Digistore24 Trusted Badge Code -->
-    <script type="text/javascript" src="https://www.digistore24.com/trusted-badge/39913/3vTmVoSYTlXck0g/salespage"></script>
-    <!-- End of Digistore24 Trusted Badge Code -->
+    <!-- Trusted Badge: loaded after page is interactive -->
+    <script>
+        window.addEventListener('load', function() {
+            var script = document.createElement('script');
+            script.src = "https://www.digistore24.com/trusted-badge/39913/3vTmVoSYTlXck0g/salespage";
+            document.body.appendChild(script);
+        });
+    </script>
 
-    <!-- Book Preview Popup -->
+    <!-- Book Preview Popup (src removed, loaded on click) -->
     <div id="bookPreviewPopup" class="book-preview-popup" onclick="closeBookPreview(event)">
         <div class="book-preview-content" onclick="event.stopPropagation()">
             <button class="book-preview-close" onclick="closeBookPreview()"><i class="fas fa-times text-gray-700"></i></button>
             <div class="book-preview-iframe-wrapper">
-                <iframe src="https://simplebooklet.com/embed.php?wpKey=PLACEHOLDER_PREVIEW_KEY&source=embed" allowfullscreen loading="lazy" title="Book Preview" style="border:0; width:100%; height:100%;"></iframe>
+                <iframe data-src="https://simplebooklet.com/embed.php?wpKey=PLACEHOLDER_PREVIEW_KEY&source=embed" allowfullscreen loading="lazy" title="Book Preview" style="border:0; width:100%; height:100%;"></iframe>
             </div>
             <div class="book-preview-footer">
                 <button class="book-preview-done-btn" onclick="closeBookPreview()"><i class="fas fa-check-circle"></i> Done</button>
@@ -424,7 +434,7 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (unchanged structure, images optimized) -->
     <section class="trust-section pt-6 pb-16 px-4">
         <div class="container mx-auto max-w-6xl">
             <div class="flex flex-col md:flex-row items-center">
@@ -481,7 +491,7 @@
 
                     <div class="md:hidden mb-8">
                         <div class="relative">
-                            <img src="images/perimenopause.webp" alt="Professional woman at work" class="rounded-xl shadow-2xl w-full mb-6" style="max-height: 500px; object-fit: cover;" loading="lazy">
+                            <img src="images/perimenopause.webp" alt="Professional woman at work" class="rounded-xl shadow-2xl w-full mb-6" style="max-height: 500px; object-fit: cover;" loading="lazy" decoding="async">
                         </div>
                     </div>
 
@@ -495,15 +505,15 @@
                             SECURE MY PERFORMANCE SYSTEM - $47
                         </a>
                         <div class="flex items-center justify-center mt-4 gap-4">
-                            <img src="/images/mastercard.svg" alt="Mastercard" class="payment-logo payment-logo-large" style="filter: none; height: 56px;">
-                            <img src="/images/visa.svg" alt="Visa" class="payment-logo payment-logo-large" style="filter: none; height: 72px;">
-                            <img src="/images/paypal.svg" alt="PayPal" class="payment-logo payment-logo-large" style="filter: none; height: 56px;">
-                            <img src="/images/applepay.svg" alt="Apple Pay" class="payment-logo payment-logo-large" style="filter: none; height: 72px;">
+                            <img src="/images/mastercard.svg" alt="Mastercard" class="payment-logo payment-logo-large" style="filter: none; height: 56px;" loading="lazy" decoding="async">
+                            <img src="/images/visa.svg" alt="Visa" class="payment-logo payment-logo-large" style="filter: none; height: 72px;" loading="lazy" decoding="async">
+                            <img src="/images/paypal.svg" alt="PayPal" class="payment-logo payment-logo-large" style="filter: none; height: 56px;" loading="lazy" decoding="async">
+                            <img src="/images/applepay.svg" alt="Apple Pay" class="payment-logo payment-logo-large" style="filter: none; height: 72px;" loading="lazy" decoding="async">
                         </div>
                     </div>
                     <p class="text-center text-gray-600">100% Risk-Free: 60-Day Money-Back Guarantee</p>
 
-                    <img src="images/handmockup.webp" alt="Hand mockup" class="rounded-xl shadow-lg w-full max-w-md mx-auto mb-1" loading="lazy">
+                    <img src="images/handmockup.webp" alt="Hand mockup" class="rounded-xl shadow-lg w-full max-w-md mx-auto mb-1" loading="lazy" decoding="async">
                     <p class="text-center text-xs text-gray-400 italic mb-4">All items are delivered digitally</p>
 
                     <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 text-center mt-6">
@@ -516,7 +526,7 @@
                 </div>
                 <div class="md:w-1/2 flex justify-center hidden md:block">
                     <div class="relative">
-                        <img src="images/perimenopause.webp" alt="Professional woman at work" class="rounded-xl shadow-2xl w-full" style="max-height: 600px; object-fit: cover;" loading="eager">
+                        <img src="images/perimenopause.webp" alt="Professional woman at work" class="rounded-xl shadow-2xl w-full" style="max-height: 600px; object-fit: cover;" loading="eager" fetchpriority="high">
                         <p class="text-center text-sm text-gray-600 mt-2 italic">The invisible performance cost of perimenopause in high-stakes environments</p>
                     </div>
                 </div>
@@ -524,13 +534,13 @@
         </div>
     </section>
 
-    <!-- Video Section -->
+    <!-- Video Section (preload="none") -->
     <section class="py-12 px-4 bg-gray-50 border-t border-b border-gray-200">
         <div class="container mx-auto max-w-4xl">
             <div class="mb-8">
                 <h3 class="text-2xl font-bold text-center mb-6">For decades, western medicine told women to "expect hot flashes." They completely ignored the brain.</h3>
                 <div class="video-player-wrapper max-w-3xl mx-auto">
-                    <video controls poster="images/perimenopause.webp" preload="metadata" style="width:100%;display:block;border-radius:0;">
+                    <video controls poster="images/perimenopause.webp" preload="none" style="width:100%;display:block;border-radius:0;">
                         <source src="Perimenopausevideo.mp4" type="video/mp4">
                         Your browser does not support the video player.
                     </video>
@@ -565,26 +575,26 @@
         </div>
     </section>
 
-    <!-- Resources Validated Section -->
+    <!-- Resources Validated Section (images lazy loaded) -->
     <section class="py-8 bg-white border-t border-b border-gray-200">
         <div class="container mx-auto max-w-6xl px-4">
             <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
                 <p class="text-sm text-gray-600 font-medium">System validated against current clinical and occupational evidence:</p>
                 <div class="flex flex-wrap justify-center gap-6 items-start">
                     <div class="flex flex-col items-center">
-                        <a href="https://publications.parliament.uk/pa/cm5803/cmselect/cmwomeq/91/report.html" target="_blank"><img src="images/hocc.webp" alt="UK Parliament Women and Equalities Committee" class="h-16" /></a>
+                        <a href="https://publications.parliament.uk/pa/cm5803/cmselect/cmwomeq/91/report.html" target="_blank"><img src="images/hocc.webp" alt="UK Parliament Women and Equalities Committee" class="h-16" loading="lazy" decoding="async"></a>
                         <span class="text-xs text-gray-600 mt-1 font-medium">UK Parliament</span>
                     </div>
                     <div class="flex flex-col items-center">
-                        <a href="https://journals.lww.com/menopausejournal/fulltext/2019/10000/the_menopause_transition_and_women_s_health_at.20.aspx" target="_blank"><img src="images/swan.webp" alt="SWAN Longitudinal Study" class="h-16" /></a>
+                        <a href="https://journals.lww.com/menopausejournal/fulltext/2019/10000/the_menopause_transition_and_women_s_health_at.20.aspx" target="_blank"><img src="images/swan.webp" alt="SWAN Longitudinal Study" class="h-16" loading="lazy" decoding="async"></a>
                         <span class="text-xs text-gray-600 mt-1 font-medium">SWAN Study</span>
                     </div>
                     <div class="flex flex-col items-center">
-                        <a href="https://pubmed.ncbi.nlm.nih.gov/29315132/" target="_blank"><img src="images/nih.webp" alt="MENOS@Work RCT Data" class="h-16" /></a>
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/29315132/" target="_blank"><img src="images/nih.webp" alt="MENOS@Work RCT Data" class="h-16" loading="lazy" decoding="async"></a>
                         <span class="text-xs text-gray-600 mt-1 font-medium">NIH MENOS@Work</span>
                     </div>
                     <div class="flex flex-col items-center">
-                        <a href="https://www.nyp.org/healthmatters/how-to-protect-your-brain-health-during-menopause" target="_blank"><img src="images/neuro.webp" alt="Occupational Neuroscience" class="h-16" /></a>
+                        <a href="https://www.nyp.org/healthmatters/how-to-protect-your-brain-health-during-menopause" target="_blank"><img src="images/neuro.webp" alt="Occupational Neuroscience" class="h-16" loading="lazy" decoding="async"></a>
                         <span class="text-xs text-gray-600 mt-1 font-medium">NeuroScience</span>
                     </div>
                 </div>
@@ -592,7 +602,7 @@
         </div>
     </section>
 
-    <!-- Testimonials Section (moved here) -->
+    <!-- Testimonials Section (images lazy) -->
     <section class="py-20 bg-white px-4">
         <div class="container mx-auto max-w-6xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-2">What Professional Women Say:</h2>
@@ -601,7 +611,7 @@
             <div class="testimonial-carousel mb-12">
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
-                        <img src="images/image1.webp" alt="Sarah Mitchell" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
+                        <img src="images/image1.webp" alt="Sarah Mitchell" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy" decoding="async">
                         <div>
                             <p class="font-bold">Sarah Mitchell</p>
                             <p class="text-sm text-gray-500">Senior Consultant, California</p>
@@ -616,7 +626,7 @@
 
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
-                        <img src="images/image2.webp" alt="Amina Reeves" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
+                        <img src="images/image2.webp" alt="Amina Reeves" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy" decoding="async">
                         <div>
                             <p class="font-bold">Amina Reeves</p>
                             <p class="text-sm text-gray-500">Medical Director, Toronto</p>
@@ -631,7 +641,7 @@
 
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
-                        <img src="images/image3.webp" alt="Claire Morrison" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
+                        <img src="images/image3.webp" alt="Claire Morrison" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy" decoding="async">
                         <div>
                             <p class="font-bold">Claire Morrison</p>
                             <p class="text-sm text-gray-500">Finance Director, Sydney</p>
@@ -646,7 +656,7 @@
 
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
-                        <img src="images/image4.webp" alt="Jennifer Taylor" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
+                        <img src="images/image4.webp" alt="Jennifer Taylor" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy" decoding="async">
                         <div>
                             <p class="font-bold">Jennifer Taylor</p>
                             <p class="text-sm text-gray-500">Barrister, Manchester</p>
@@ -661,7 +671,7 @@
 
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
-                        <img src="images/image5.webp" alt="Leliana Shuzhen" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
+                        <img src="images/image5.webp" alt="Leliana Shuzhen" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy" decoding="async">
                         <div>
                             <p class="font-bold">Leliana Shuzhen</p>
                             <p class="text-sm text-gray-500">Tech Lead, Melbourne</p>
@@ -676,7 +686,7 @@
 
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
-                        <img src="images/image6.webp" alt="Helen Walker" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
+                        <img src="images/image6.webp" alt="Helen Walker" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy" decoding="async">
                         <div>
                             <p class="font-bold">Helen Walker</p>
                             <p class="text-sm text-gray-500">Operations Director, Edinburgh</p>
@@ -691,7 +701,7 @@
 
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
-                        <img src="images/image7.webp" alt="Rachel Donovan" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
+                        <img src="images/image7.webp" alt="Rachel Donovan" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy" decoding="async">
                         <div>
                             <p class="font-bold">Rachel Donovan</p>
                             <p class="text-sm text-gray-500">Marketing VP, Vancouver</p>
@@ -706,7 +716,7 @@
 
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
-                        <img src="images/image8.webp" alt="Diane Lawrence" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy">
+                        <img src="images/image8.webp" alt="Diane Lawrence" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy" decoding="async">
                         <div>
                             <p class="font-bold">Diane Lawrence</p>
                             <p class="text-sm text-gray-500">Partner, Law Firm, Brisbane</p>
@@ -730,7 +740,7 @@
         </div>
     </section>
 
-    <!-- What You'll Get Inside Section -->
+    <!-- What You'll Get Inside Section (images lazy) -->
     <section id="whats-inside" class="py-20 bg-blue-50 px-4">
         <div class="container mx-auto max-w-6xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Your Complete Perimenopause Performance System</h2>
@@ -739,7 +749,7 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-3 mb-12">
                 <!-- CARD 1: EBOOK -->
                 <div class="value-card value-card-compact bg-white p-3 rounded-xl shadow-md">
-                    <img src="images/ebookmockup.webp" alt="Ebook Mockup" class="w-3/4 mx-auto rounded-lg mb-2" loading="lazy">
+                    <img src="images/ebookmockup.webp" alt="Ebook Mockup" class="w-3/4 mx-auto rounded-lg mb-2" loading="lazy" decoding="async">
                     <p class="text-xs text-gray-400 italic text-center mb-1">Delivered digitally</p>
                     <h3 class="text-sm font-bold mb-1 text-blue-800">THE BUSY WOMAN'S PERIMENOPAUSE EBOOK</h3>
                     <p class="text-gray-600 text-xs mb-2">200+ page operational bible. Every protocol, script, and framework to keep your edge at work — searchable, private, instant.</p>
@@ -747,7 +757,7 @@
                 </div>
                 <!-- CARD 2: AUDIOBOOK -->
                 <div class="value-card value-card-compact bg-white p-3 rounded-xl shadow-md">
-                    <img src="images/audiobookmockup.webp" alt="Audiobook Mockup" class="w-3/4 mx-auto rounded-lg mb-2" loading="lazy">
+                    <img src="images/audiobookmockup.webp" alt="Audiobook Mockup" class="w-3/4 mx-auto rounded-lg mb-2" loading="lazy" decoding="async">
                     <p class="text-xs text-gray-400 italic text-center mb-1">Delivered digitally</p>
                     <h3 class="text-sm font-bold mb-1 text-blue-800">AUDIOBOOK: PRIVATE COMMUTE COACH</h3>
                     <p class="text-gray-600 text-xs mb-2">2+ hours of invisible coaching. Pre-meeting priming, fog‑day commutes, or nights when reading feels impossible.</p>
@@ -755,7 +765,7 @@
                 </div>
                 <!-- CARD 3: WORKOUT -->
                 <div class="value-card value-card-compact bg-white p-3 rounded-xl shadow-md">
-                    <img src="images/workout.webp" alt="Workout Plan" class="w-3/4 mx-auto rounded-lg mb-2" loading="lazy">
+                    <img src="images/workout.webp" alt="Workout Plan" class="w-3/4 mx-auto rounded-lg mb-2" loading="lazy" decoding="async">
                     <p class="text-xs text-gray-400 italic text-center mb-1">Printable</p>
                     <h3 class="text-sm font-bold mb-1 text-blue-800">15‑MIN HOME WORKOUT: STRENGTH</h3>
                     <p class="text-gray-600 text-xs mb-2">Targeted strength for hormonal resilience, bone density, and energy. No gym. No equipment beyond a band. Done in the time it takes to brew coffee.</p>
@@ -763,7 +773,7 @@
                 </div>
                 <!-- CARD 4: MEAL PLAN -->
                 <div class="value-card value-card-compact bg-white p-3 rounded-xl shadow-md">
-                    <img src="images/mealplan.webp" alt="Meal Plan" class="w-3/4 mx-auto rounded-lg mb-2" loading="lazy">
+                    <img src="images/mealplan.webp" alt="Meal Plan" class="w-3/4 mx-auto rounded-lg mb-2" loading="lazy" decoding="async">
                     <p class="text-xs text-gray-400 italic text-center mb-1">Printable</p>
                     <h3 class="text-sm font-bold mb-1 text-blue-800">7‑DAY MEAL PLAN: BRAIN FUEL</h3>
                     <p class="text-gray-600 text-xs mb-2">Hormone‑stabilizing meals built around phytoestrogens, omega‑3s, and blood‑sugar balance. Complete foods‑to‑limit guide included.</p>
@@ -771,7 +781,7 @@
                 </div>
                 <!-- CARD 5: VEGAN MEAL PLAN -->
                 <div class="value-card value-card-compact bg-white p-3 rounded-xl shadow-md">
-                    <img src="images/vegan.webp" alt="Vegan Meal Plan" class="w-3/4 mx-auto rounded-lg mb-2" loading="lazy">
+                    <img src="images/vegan.webp" alt="Vegan Meal Plan" class="w-3/4 mx-auto rounded-lg mb-2" loading="lazy" decoding="async">
                     <p class="text-xs text-gray-400 italic text-center mb-1">Printable</p>
                     <h3 class="text-sm font-bold mb-1 text-blue-800">7‑DAY VEGAN MEAL PLAN</h3>
                     <p class="text-gray-600 text-xs mb-2">Same hormone‑stabilizing architecture, entirely plant‑based. Complete B12, iron, and protein targeting — no compromise on ethics or executive function.</p>
@@ -780,7 +790,7 @@
             </div>
 
             <div class="bg-white p-8 rounded-xl shadow-md text-center max-w-2xl mx-auto">
-                <img src="images/mockup.webp" alt="Mockup" class="rounded-lg shadow-md w-full max-w-lg mx-auto mb-1" loading="lazy">
+                <img src="images/mockup.webp" alt="Mockup" class="rounded-lg shadow-md w-full max-w-lg mx-auto mb-1" loading="lazy" decoding="async">
                 <p class="text-xs text-gray-400 italic mb-4">All items are delivered digitally</p>
                 <h3 class="text-2xl font-bold mb-4">Total Value: $489</h3>
                 <p class="text-gray-600 mb-6">What is your professional reputation worth? Your earning trajectory? Your peace of mind in the rooms that matter?</p>
@@ -798,10 +808,10 @@
                 </div>
 
                 <div class="flex items-center justify-center mt-4 gap-4">
-                    <img src="/images/mastercard.svg" alt="Mastercard" class="payment-logo payment-logo-large" style="filter: none; height: 56px;">
-                    <img src="/images/visa.svg" alt="Visa" class="payment-logo payment-logo-large" style="filter: none; height: 72px;">
-                    <img src="/images/paypal.svg" alt="PayPal" class="payment-logo payment-logo-large" style="filter: none; height: 56px;">
-                    <img src="/images/applepay.svg" alt="Apple Pay" class="payment-logo payment-logo-large" style="filter: none; height: 72px;">
+                    <img src="/images/mastercard.svg" alt="Mastercard" class="payment-logo payment-logo-large" style="filter: none; height: 56px;" loading="lazy" decoding="async">
+                    <img src="/images/visa.svg" alt="Visa" class="payment-logo payment-logo-large" style="filter: none; height: 72px;" loading="lazy" decoding="async">
+                    <img src="/images/paypal.svg" alt="PayPal" class="payment-logo payment-logo-large" style="filter: none; height: 56px;" loading="lazy" decoding="async">
+                    <img src="/images/applepay.svg" alt="Apple Pay" class="payment-logo payment-logo-large" style="filter: none; height: 72px;" loading="lazy" decoding="async">
                 </div>
 
                 <p class="text-gray-600 mt-4">100% Risk Free • Instant Access • Money-Back Guarantee</p>
@@ -809,7 +819,7 @@
         </div>
     </section>
 
-    <!-- Problem Agitation Section -->
+    <!-- Problem Agitation Section (unchanged, images lazy) -->
     <section class="py-20 bg-white px-4">
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">The <span class="text-red-600">Concealment Paradox</span> No One Talks About</h2>
@@ -854,7 +864,6 @@
                     </div>
                 </div>
 
-                <!-- Additional warnings kept -->
                 <div class="space-y-3">
                     <div class="flex items-start">
                         <span class="text-red-500 mr-3 text-xl">⚠️</span>
@@ -872,7 +881,6 @@
                     </div>
                 </div>
 
-                <!-- Visual break: Icon row -->
                 <div class="flex justify-center items-center gap-4 md:gap-8 py-6 text-center">
                     <div class="flex flex-col items-center">
                         <i class="fas fa-brain text-3xl text-purple-600"></i>
@@ -896,7 +904,7 @@
                 </div>
             </div>
 
-            <!-- Book Preview -->
+            <!-- Book Preview (unchanged) -->
             <div class="py-8 px-4 bg-gray-50 border-t border-b border-gray-200 rounded-xl mb-8">
                 <div class="text-center">
                     <h2 class="text-2xl md:text-3xl font-bold mb-4">📖 Book Preview</h2>
@@ -909,11 +917,10 @@
         </div>
     </section>
 
-    <!-- Authority & Warning Section (new compact comparison table) -->
+    <!-- Authority & Warning Section (unchanged) -->
     <section class="py-20 bg-gray-100 px-4">
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-3xl font-bold text-center mb-6">Why HR, Wellness Apps, and Doctor's Books Can't Save Your Career</h2>
-
             <p class="text-center text-gray-600 mb-8">I spent $2,400 on executive coaching that assumed I had a confidence problem. What I actually had was a progesterone‑GABA‑sleep problem that no amount of "leaning in" could fix.</p>
 
             <div class="overflow-x-auto mb-10">
@@ -963,7 +970,7 @@
         </div>
     </section>
 
-    <!-- Pricing & Guarantee Section -->
+    <!-- Pricing & Guarantee Section (images lazy) -->
     <section id="pricing" class="py-20 guarantee-section px-4">
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Will You Leave Your Career to Chance Or Take Control?</h2>
@@ -973,7 +980,7 @@
                     <div class="text-center mb-6">
                         <span class="text-gray-500 line-through text-xl">Executive Coaching: $500+/month</span>
                         <span class="text-4xl font-bold text-blue-800 block mt-2">Complete System: $47</span>
-                        <img src="images/mockup.webp" alt="Mockup" class="rounded-lg shadow-md w-full max-w-lg mx-auto mt-4" loading="lazy">
+                        <img src="images/mockup.webp" alt="Mockup" class="rounded-lg shadow-md w-full max-w-lg mx-auto mt-4" loading="lazy" decoding="async">
                         <p class="text-xs text-gray-400 italic mt-1">All items are delivered digitally</p>
                         <div class="mt-4 p-3 bg-green-50 rounded-lg">
                             <p class="text-green-700 font-bold">Prevent $5,000+ Loss in Quarterly Earnings</p>
@@ -1035,10 +1042,10 @@
 
                     <div class="flex flex-col items-center">
                         <div class="flex items-center justify-center mb-2 gap-4">
-                            <img src="/images/mastercard.svg" alt="Mastercard" class="payment-logo payment-logo-large" style="filter: none; height: 56px;">
-                            <img src="/images/visa.svg" alt="Visa" class="payment-logo payment-logo-large" style="filter: none; height: 72px;">
-                            <img src="/images/paypal.svg" alt="PayPal" class="payment-logo payment-logo-large" style="filter: none; height: 56px;">
-                            <img src="/images/applepay.svg" alt="Apple Pay" class="payment-logo payment-logo-large" style="filter: none; height: 72px;">
+                            <img src="/images/mastercard.svg" alt="Mastercard" class="payment-logo payment-logo-large" style="filter: none; height: 56px;" loading="lazy" decoding="async">
+                            <img src="/images/visa.svg" alt="Visa" class="payment-logo payment-logo-large" style="filter: none; height: 72px;" loading="lazy" decoding="async">
+                            <img src="/images/paypal.svg" alt="PayPal" class="payment-logo payment-logo-large" style="filter: none; height: 56px;" loading="lazy" decoding="async">
+                            <img src="/images/applepay.svg" alt="Apple Pay" class="payment-logo payment-logo-large" style="filter: none; height: 72px;" loading="lazy" decoding="async">
                         </div>
                         <p class="ssl-badge text-xs text-green-600 font-medium flex items-center justify-center">
                             <i class="fas fa-lock"></i> 256-bit SSL Encryption • Your Privacy Protected
@@ -1069,7 +1076,7 @@
         </div>
     </section>
 
-    <!-- FAQ Section -->
+    <!-- FAQ Section (unchanged) -->
     <section id="faq" class="py-20 bg-white px-4">
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-2xl font-bold text-center mb-16">Questions Professional Women Are Asking</h2>
@@ -1145,7 +1152,7 @@
         </div>
     </section>
 
-    <!-- Final CTA -->
+    <!-- Final CTA (unchanged) -->
     <section class="py-20 bg-gray-50 px-4">
         <div class="container mx-auto max-w-4xl text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">The Most Dangerous Decision <br>Is Doing Nothing</h2>
@@ -1184,45 +1191,76 @@
         </div>
     </section>
 
+    <!-- Optimized JavaScript -->
     <script>
-        document.querySelectorAll('#faq button').forEach(button => {
-            button.addEventListener('click', () => {
-                const content = button.nextElementSibling;
-                content.classList.toggle('hidden');
-                const icon = button.querySelector('i');
-                icon.classList.toggle('rotate-180');
-            });
+        // Deferred Digistore promo code (loaded after DOM ready)
+        window.addEventListener('DOMContentLoaded', function() {
+            // Load the external script if not already present (defer ensures it's after)
+            var digiScript = document.createElement('script');
+            digiScript.src = "https://www.digistore24-scripts.com/service/digistore.js";
+            digiScript.defer = true;
+            document.head.appendChild(digiScript);
+
+            // Call promocode after the script loads
+            digiScript.onload = function() {
+                digistorePromocode({
+                    "product_id": 692610,
+                    "adjust_domain": true
+                });
+            };
+            // Fallback if script already loaded via cache
+            if (typeof digistorePromocode === 'function') {
+                digistorePromocode({
+                    "product_id": 692610,
+                    "adjust_domain": true
+                });
+            }
         });
 
+        // Book Preview Lazy Load
         function openBookPreview() {
-            document.getElementById('bookPreviewPopup').classList.add('active');
+            var popup = document.getElementById('bookPreviewPopup');
+            var iframe = popup.querySelector('iframe');
+            if (iframe && !iframe.src) {
+                iframe.src = iframe.dataset.src;  // load only now
+            }
+            popup.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
         function closeBookPreview(event) {
-            if (!event || event.target.id === 'bookPreviewPopup' || event.target.closest('.book-preview-close') || event
-                .target.closest('.book-preview-done-btn')) {
+            if (!event || event.target.id === 'bookPreviewPopup' || event.target.closest('.book-preview-close') || event.target.closest('.book-preview-done-btn')) {
                 document.getElementById('bookPreviewPopup').classList.remove('active');
                 document.body.style.overflow = '';
             }
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const counters = document.querySelectorAll('.counter');
-            const baseCount = 124;
-            const randomAddition = Math.floor(Math.random() * 15);
-            const finalCount = baseCount + randomAddition;
+        // FAQ accordion
+        document.querySelectorAll('#faq button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var content = button.nextElementSibling;
+                content.classList.toggle('hidden');
+                var icon = button.querySelector('i');
+                icon.classList.toggle('rotate-180');
+            });
+        });
 
-            counters.forEach(counter => {
-                counter.textContent = `${finalCount} Women Bought This Week`;
+        // Counter & smooth scroll & hover preload
+        document.addEventListener('DOMContentLoaded', function() {
+            var counters = document.querySelectorAll('.counter');
+            var baseCount = 124;
+            var randomAddition = Math.floor(Math.random() * 15);
+            var finalCount = baseCount + randomAddition;
+            counters.forEach(function(counter) {
+                counter.textContent = finalCount + ' Women Bought This Week';
             });
 
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const targetId = this.getAttribute('href');
+                    var targetId = this.getAttribute('href');
                     if (targetId === '#') return;
-                    const targetElement = document.querySelector(targetId);
+                    var targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         window.scrollTo({
                             top: targetElement.offsetTop - 20,
@@ -1232,16 +1270,13 @@
                 });
             });
 
-            // Prefetch on hover for aggressive instant load
-            const prefetchOnHover = () => {
-                const links = document.querySelectorAll('a[href="https://www.checkout-ds24.com/product/692610"]');
-                links.forEach(link => {
-                    link.addEventListener('mouseenter', () => {
-                        fetch('https://www.checkout-ds24.com/product/692610', { mode: 'no-cors', priority: 'low' });
-                    }, { once: true });
-                });
-            };
-            window.addEventListener('load', prefetchOnHover);
+            // Aggressive prefetch on hover for checkout
+            var links = document.querySelectorAll('a[href="https://www.checkout-ds24.com/product/692610"]');
+            links.forEach(function(link) {
+                link.addEventListener('mouseenter', function() {
+                    fetch('https://www.checkout-ds24.com/product/692610', { mode: 'no-cors', priority: 'low' });
+                }, { once: true });
+            });
         });
     </script>
 
