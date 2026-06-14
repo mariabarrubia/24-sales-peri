@@ -421,12 +421,19 @@
         });
     </script>
 
-    <!-- Book Preview Popup (src removed, loaded on click) -->
+    <!-- Book Preview Popup (src loaded on click) -->
     <div id="bookPreviewPopup" class="book-preview-popup" onclick="closeBookPreview(event)">
         <div class="book-preview-content" onclick="event.stopPropagation()">
             <button class="book-preview-close" onclick="closeBookPreview()"><i class="fas fa-times text-gray-700"></i></button>
             <div class="book-preview-iframe-wrapper">
-                <iframe data-src="https://simplebooklet.com/embed.php?wpKey=PLACEHOLDER_PREVIEW_KEY&source=embed" allowfullscreen loading="lazy" title="Book Preview" style="border:0; width:100%; height:100%;"></iframe>
+                <iframe data-src="https://simplebooklet.com/embed.php?wpKey=Itg1Z9gHEKyMe4ZEonPNfN&source=embed"
+                        allowfullscreen
+                        width="100%"
+                        height="100%"
+                        style="border:0; overflow:hidden;"
+                        scrolling="no"
+                        loading="lazy"
+                        title="Book Preview"></iframe>
             </div>
             <div class="book-preview-footer">
                 <button class="book-preview-done-btn" onclick="closeBookPreview()"><i class="fas fa-check-circle"></i> Done</button>
@@ -747,20 +754,30 @@
             <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">Not symptom tracking. Not wellness advice. An operational system for maintaining executive function, professional credibility, and privacy during the menopausal transition.</p>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-3 mb-12">
-                <!-- CARD 1: EBOOK -->
+                <!-- CARD 1: EBOOK (now with preview button) -->
                 <div class="value-card value-card-compact bg-white p-3 rounded-xl shadow-md">
                     <img src="images/ebookmockup.webp" alt="Ebook Mockup" class="w-3/4 mx-auto rounded-lg mb-2" loading="lazy" decoding="async">
                     <p class="text-xs text-gray-400 italic text-center mb-1">Delivered digitally</p>
                     <h3 class="text-sm font-bold mb-1 text-blue-800">THE BUSY WOMAN'S PERIMENOPAUSE EBOOK</h3>
                     <p class="text-gray-600 text-xs mb-2">200+ page operational bible. Every protocol, script, and framework to keep your edge at work — searchable, private, instant.</p>
+                    <div class="text-center mb-1">
+                        <button onclick="openBookPreview()" class="text-xs text-blue-600 hover:underline font-medium inline-flex items-center gap-1">
+                            <i class="fas fa-book-open"></i> Look Inside
+                        </button>
+                    </div>
                     <div class="text-right text-xs font-bold text-gray-500">Value $97</div>
                 </div>
-                <!-- CARD 2: AUDIOBOOK -->
+                <!-- CARD 2: AUDIOBOOK (now with audio sample) -->
                 <div class="value-card value-card-compact bg-white p-3 rounded-xl shadow-md">
                     <img src="images/audiobookmockup.webp" alt="Audiobook Mockup" class="w-3/4 mx-auto rounded-lg mb-2" loading="lazy" decoding="async">
                     <p class="text-xs text-gray-400 italic text-center mb-1">Delivered digitally</p>
                     <h3 class="text-sm font-bold mb-1 text-blue-800">AUDIOBOOK: PRIVATE COMMUTE COACH</h3>
                     <p class="text-gray-600 text-xs mb-2">2+ hours of invisible coaching. Pre-meeting priming, fog‑day commutes, or nights when reading feels impossible.</p>
+                    <div class="text-center mb-1">
+                        <button id="audioSampleBtn" onclick="toggleAudioSample()" class="text-xs text-blue-600 hover:underline font-medium inline-flex items-center gap-1">
+                            <i class="fas fa-play"></i> Sample
+                        </button>
+                    </div>
                     <div class="text-right text-xs font-bold text-gray-500">Value $127</div>
                 </div>
                 <!-- CARD 3: WORKOUT -->
@@ -819,7 +836,7 @@
         </div>
     </section>
 
-    <!-- Problem Agitation Section (unchanged, images lazy) -->
+    <!-- Problem Agitation Section (Book Preview section removed) -->
     <section class="py-20 bg-white px-4">
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">The <span class="text-red-600">Concealment Paradox</span> No One Talks About</h2>
@@ -901,17 +918,6 @@
                         <i class="fas fa-person-falling text-3xl text-red-600"></i>
                         <span class="text-xs font-medium mt-1">Collapse</span>
                     </div>
-                </div>
-            </div>
-
-            <!-- Book Preview (unchanged) -->
-            <div class="py-8 px-4 bg-gray-50 border-t border-b border-gray-200 rounded-xl mb-8">
-                <div class="text-center">
-                    <h2 class="text-2xl md:text-3xl font-bold mb-4">📖 Book Preview</h2>
-                    <p class="text-gray-600 mb-6">Click to flip through the book's preview — you'll have an idea what's inside</p>
-                    <button onclick="openBookPreview()" class="cta-blue font-bold py-3 px-8 rounded-lg inline-flex items-center gap-2">
-                        <i class="fas fa-book-open"></i>Preview Book
-                    </button>
                 </div>
             </div>
         </div>
@@ -1191,6 +1197,9 @@
         </div>
     </section>
 
+    <!-- Audio sample element (hidden) -->
+    <audio id="audioSample" src="audiobooksample.MP3" preload="none"></audio>
+
     <!-- Optimized JavaScript -->
     <script>
         // Deferred Digistore promo code (loaded after DOM ready)
@@ -1234,6 +1243,33 @@
                 document.body.style.overflow = '';
             }
         }
+
+        // Toggle audiobook sample playback
+        function toggleAudioSample() {
+            var audio = document.getElementById('audioSample');
+            if (audio.paused) {
+                audio.play().catch(() => {});
+            } else {
+                audio.pause();
+            }
+        }
+
+        // Update audiobook button text based on playback state
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('audioSample');
+            var btn = document.getElementById('audioSampleBtn');
+            if (audio && btn) {
+                audio.addEventListener('play', function() {
+                    btn.innerHTML = '<i class="fas fa-pause"></i> Pause';
+                });
+                audio.addEventListener('pause', function() {
+                    btn.innerHTML = '<i class="fas fa-play"></i> Sample';
+                });
+                audio.addEventListener('ended', function() {
+                    btn.innerHTML = '<i class="fas fa-play"></i> Sample';
+                });
+            }
+        });
 
         // FAQ accordion
         document.querySelectorAll('#faq button').forEach(function(button) {
