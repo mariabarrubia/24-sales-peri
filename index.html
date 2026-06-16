@@ -18,45 +18,54 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 
-    <!-- Font Awesome (non‑blocking, already optimized) -->
+    <!-- Font Awesome (non‑blocking) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
 
     <!-- Preload hero image for LCP -->
     <link rel="preload" as="image" href="images/perimenopause.webp" fetchpriority="high">
 
-    <!-- Inline critical CSS – everything needed for the first paint (NO Tailwind CDN) -->
+    <!-- Inline critical CSS – all utility classes replicated, zero FOUC -->
     <style>
         /* ---------- RESET & BASE ---------- */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { box-sizing: border-box; }
         body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Inter';
             margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Inter';
             scroll-behavior: smooth;
             padding-bottom: 50px;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            color: #1f2937;
         }
-        img, video, iframe {
+        img, video, iframe, object, embed {
             max-width: 100%;
             height: auto;
+            display: block;
         }
+        a { color: inherit; text-decoration: none; }
+        .antialiased { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+        /* ---------- CONTAINER ---------- */
+        .container { width: 100%; margin-left: auto; margin-right: auto; padding-left: 0.75rem; padding-right: 0.75rem; }
+        .max-w-2xl { max-width: 42rem; }
+        .max-w-3xl { max-width: 48rem; }
+        .max-w-4xl { max-width: 56rem; }
+        .max-w-6xl { max-width: 72rem; }
+        .max-w-md { max-width: 28rem; }
+        .max-w-lg { max-width: 32rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
 
         /* ---------- TYPOGRAPHY ---------- */
-        .text-xs { font-size: 0.75rem; }
-        .text-sm { font-size: 0.875rem; }
-        .text-base { font-size: 1rem; }
-        .text-lg { font-size: 1.125rem; }
-        .text-xl { font-size: 1.25rem; }
-        .text-2xl { font-size: 1.5rem; }
-        .text-3xl { font-size: 1.875rem; }
-        .text-4xl { font-size: 2.25rem; }
-        .text-5xl { font-size: 3rem; }
+        .text-xs { font-size: 0.75rem; line-height: 1rem; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .text-5xl { font-size: 3rem; line-height: 1; }
         .font-light { font-weight: 300; }
+        .font-normal { font-weight: 400; }
         .font-medium { font-weight: 500; }
         .font-semibold { font-weight: 600; }
         .font-bold { font-weight: 700; }
@@ -64,73 +73,113 @@
         .italic { font-style: italic; }
         .leading-tight { line-height: 1.25; }
         .leading-normal { line-height: 1.5; }
-        .text-left { text-align: left; }
         .text-center { text-align: center; }
+        .text-left { text-align: left; }
         .text-right { text-align: right; }
-        .text-gray-200 { color: #e5e7eb; }
         .text-gray-400 { color: #9ca3af; }
         .text-gray-500 { color: #6b7280; }
         .text-gray-600 { color: #4b5563; }
         .text-gray-700 { color: #374151; }
         .text-gray-800 { color: #1f2937; }
-        .text-red-500 { color: #ef4444; }
         .text-red-600 { color: #dc2626; }
         .text-red-700 { color: #b91c1c; }
         .text-red-800 { color: #991b1b; }
-        .text-green-500 { color: #10b981; }
-        .text-green-600 { color: #059669; }
-        .text-green-700 { color: #047857; }
-        .text-green-800 { color: #065f46; }
         .text-blue-600 { color: #2563eb; }
         .text-blue-700 { color: #1d4ed8; }
         .text-blue-800 { color: #1e3a8a; }
         .text-blue-900 { color: #1e3a8a; }
+        .text-green-500 { color: #22c55e; }
+        .text-green-600 { color: #16a34a; }
+        .text-green-700 { color: #15803d; }
+        .text-green-800 { color: #166534; }
         .text-yellow-400 { color: #facc15; }
         .text-yellow-600 { color: #ca8a04; }
+        .text-yellow-700 { color: #a16207; }
         .text-yellow-800 { color: #854d0e; }
+        .text-purple-600 { color: #7c3aed; }
+        .text-purple-700 { color: #6d28d9; }
         .text-orange-500 { color: #f97316; }
-        .text-purple-600 { color: #9333ea; }
-        .text-purple-700 { color: #7e22ce; }
-        .opacity-75 { opacity: 0.75; }
+        .text-white { color: #fff; }
 
         /* ---------- BACKGROUNDS ---------- */
-        .bg-white { background-color: #ffffff; }
+        .bg-white { background-color: #fff; }
         .bg-gray-50 { background-color: #f9fafb; }
         .bg-gray-100 { background-color: #f3f4f6; }
-        .bg-red-50 { background-color: #fef2f2; }
-        .bg-red-100 { background-color: #fee2e2; }
-        .bg-green-50 { background-color: #f0fdf4; }
-        .bg-green-100 { background-color: #dcfce7; }
         .bg-blue-50 { background-color: #eff6ff; }
         .bg-blue-100 { background-color: #dbeafe; }
+        .bg-green-50 { background-color: #f0fdf4; }
+        .bg-green-100 { background-color: #dcfce7; }
+        .bg-red-50 { background-color: #fef2f2; }
         .bg-yellow-50 { background-color: #fefce8; }
         .bg-purple-100 { background-color: #f3e8ff; }
-        .bg-blue-800 { background-color: #1e40af; }
-        .bg-red-600 { background-color: #dc2626; }
-        .bg-green-600 { background-color: #059669; }
 
-        /* ---------- CONTAINERS & LAYOUT ---------- */
-        .container {
-            width: 100%;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        @media (min-width: 640px) {
-            .container {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-        }
-        .mx-auto { margin-left: auto; margin-right: auto; }
-        .max-w-2xl { max-width: 42rem; }
-        .max-w-3xl { max-width: 48rem; }
-        .max-w-4xl { max-width: 56rem; }
-        .max-w-6xl { max-width: 72rem; }
-        .max-w-md { max-width: 28rem; }
-        .max-w-lg { max-width: 32rem; }
-        .max-w-xs { max-width: 20rem; }
+        /* ---------- BORDERS ---------- */
+        .border { border-width: 1px; }
+        .border-t { border-top-width: 1px; }
+        .border-b { border-bottom-width: 1px; }
+        .border-gray-200 { border-color: #e5e7eb; }
+        .border-gray-300 { border-color: #d1d5db; }
+        .border-blue-200 { border-color: #bfdbfe; }
+        .border-green-100 { border-color: #d1fae5; }
+        .border-red-100 { border-color: #fee2e2; }
+        .border-yellow-200 { border-color: #fde68a; }
+        .border-yellow-500 { border-color: #eab308; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded-2xl { border-radius: 1rem; }
+        .rounded-full { border-radius: 9999px; }
+
+        /* ---------- SHADOWS ---------- */
+        .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); }
+        .shadow-md { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1); }
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); }
+        .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1); }
+        .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
+
+        /* ---------- SPACING ---------- */
+        .m-0 { margin: 0; }
+        .mt-1 { margin-top: 0.25rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-3 { margin-top: 0.75rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .mt-8 { margin-top: 2rem; }
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-10 { margin-bottom: 2.5rem; }
+        .mb-12 { margin-bottom: 3rem; }
+        .mb-16 { margin-bottom: 4rem; }
+        .mr-1 { margin-right: 0.25rem; }
+        .mr-2 { margin-right: 0.5rem; }
+        .mr-3 { margin-right: 0.75rem; }
+        .mr-4 { margin-right: 1rem; }
+        .ml-2 { margin-left: 0.5rem; }
+        .mx-2 { margin-left: 0.5rem; margin-right: 0.5rem; }
+        .my-2 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
+        .p-3 { padding: 0.75rem; }
+        .p-4 { padding: 1rem; }
+        .p-5 { padding: 1.25rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-8 { padding: 2rem; }
+        .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .px-10 { padding-left: 2.5rem; padding-right: 2.5rem; }
+        .py-1\.5 { padding-top: 0.375rem; padding-bottom: 0.375rem; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-5 { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+        .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+        .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .pt-6 { padding-top: 1.5rem; }
+        .pb-16 { padding-bottom: 4rem; }
 
         /* ---------- FLEX ---------- */
         .flex { display: flex; }
@@ -140,106 +189,24 @@
         .flex-wrap { flex-wrap: wrap; }
         .items-start { align-items: flex-start; }
         .items-center { align-items: center; }
-        .justify-start { justify-content: flex-start; }
         .justify-center { justify-content: center; }
         .justify-between { justify-content: space-between; }
         .justify-end { justify-content: flex-end; }
         .gap-1 { gap: 0.25rem; }
-        .gap-2 { gap: 0.5rem; }
         .gap-3 { gap: 0.75rem; }
         .gap-4 { gap: 1rem; }
         .gap-6 { gap: 1.5rem; }
-        .gap-8 { gap: 2rem; }
-        .space-y-1 > * + * { margin-top: 0.25rem; }
         .space-y-2 > * + * { margin-top: 0.5rem; }
         .space-y-3 > * + * { margin-top: 0.75rem; }
         .space-y-4 > * + * { margin-top: 1rem; }
         .space-y-6 > * + * { margin-top: 1.5rem; }
-        .space-x-2 > * + * { margin-left: 0.5rem; }
-        .space-x-4 > * + * { margin-left: 1rem; }
         .space-x-8 > * + * { margin-left: 2rem; }
 
         /* ---------- GRID ---------- */
         .grid { display: grid; }
         .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-        @media (min-width: 768px) {
-            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .md\:flex-row { flex-direction: row; }
-            .md\:w-1\/2 { width: 50%; }
-            .md\:mb-0 { margin-bottom: 0; }
-            .md\:block { display: block; }
-            .md\:hidden { display: none; }
-            .md\:text-5xl { font-size: 3rem; }
-        }
-        @media (min-width: 1024px) {
-            .lg\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-        }
         .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
-        /* ---------- SPACING (padding & margin) ---------- */
-        .p-0 { padding: 0; }
-        .p-1 { padding: 0.25rem; }
-        .p-2 { padding: 0.5rem; }
-        .p-3 { padding: 0.75rem; }
-        .p-4 { padding: 1rem; }
-        .p-5 { padding: 1.25rem; }
-        .p-6 { padding: 1.5rem; }
-        .p-8 { padding: 2rem; }
-        .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
-        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
-        .px-4 { padding-left: 1rem; padding-right: 1rem; }
-        .px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
-        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
-        .px-8 { padding-left: 2rem; padding-right: 2rem; }
-        .px-10 { padding-left: 2.5rem; padding-right: 2.5rem; }
-        .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
-        .py-1\.5 { padding-top: 0.375rem; padding-bottom: 0.375rem; }
-        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
-        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
-        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
-        .py-5 { padding-top: 1.25rem; padding-bottom: 1.25rem; }
-        .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
-        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
-        .py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
-        .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
-        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
-        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
-        .pt-6 { padding-top: 1.5rem; }
-        .pb-16 { padding-bottom: 4rem; }
-        .pb-6 { padding-bottom: 1.5rem; }
-        .mb-0 { margin-bottom: 0; }
-        .mb-1 { margin-bottom: 0.25rem; }
-        .mb-2 { margin-bottom: 0.5rem; }
-        .mb-3 { margin-bottom: 0.75rem; }
-        .mb-4 { margin-bottom: 1rem; }
-        .mb-5 { margin-bottom: 1.25rem; }
-        .mb-6 { margin-bottom: 1.5rem; }
-        .mb-8 { margin-bottom: 2rem; }
-        .mb-10 { margin-bottom: 2.5rem; }
-        .mb-12 { margin-bottom: 3rem; }
-        .mb-16 { margin-bottom: 4rem; }
-        .mt-1 { margin-top: 0.25rem; }
-        .mt-2 { margin-top: 0.5rem; }
-        .mt-3 { margin-top: 0.75rem; }
-        .mt-4 { margin-top: 1rem; }
-        .mt-6 { margin-top: 1.5rem; }
-        .mt-8 { margin-top: 2rem; }
-        .mr-1 { margin-right: 0.25rem; }
-        .mr-2 { margin-right: 0.5rem; }
-        .mr-3 { margin-right: 0.75rem; }
-        .mr-4 { margin-right: 1rem; }
-        .ml-2 { margin-left: 0.5rem; }
-        .ml-3 { margin-left: 0.75rem; }
-
-        /* ---------- DISPLAY ---------- */
-        .block { display: block; }
-        .inline-block { display: inline-block; }
-        .hidden { display: none; }
-        .inline { display: inline; }
-        @media (min-width: 768px) {
-            .md\:block { display: block; }
-            .md\:hidden { display: none; }
-        }
+        .grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 
         /* ---------- WIDTH / HEIGHT ---------- */
         .w-full { width: 100%; }
@@ -248,356 +215,51 @@
         .w-12 { width: 3rem; }
         .h-12 { height: 3rem; }
         .h-16 { height: 4rem; }
-        .h-32 { height: 8rem; }
-        .max-w-full { max-width: 100%; }
-        .object-cover { object-fit: cover; }
+        .w-12 { width: 3rem; }
+        .h-auto { height: auto; }
+        .max-w-none { max-width: none; }
 
-        /* ---------- BORDERS & RADIUS ---------- */
-        .rounded { border-radius: 0.25rem; }
-        .rounded-lg { border-radius: 0.5rem; }
-        .rounded-xl { border-radius: 0.75rem; }
-        .rounded-2xl { border-radius: 1rem; }
-        .rounded-full { border-radius: 9999px; }
-        .rounded-r-lg { border-top-right-radius: 0.5rem; border-bottom-right-radius: 0.5rem; }
-        .border { border-width: 1px; }
-        .border-0 { border: 0; }
-        .border-t { border-top-width: 1px; }
-        .border-b { border-bottom-width: 1px; }
-        .border-l-4 { border-left-width: 4px; }
-        .border-gray-200 { border-color: #e5e7eb; }
-        .border-gray-300 { border-color: #d1d5db; }
-        .border-red-100 { border-color: #fee2e2; }
-        .border-red-200 { border-color: #fecaca; }
-        .border-red-600 { border-color: #dc2626; }
-        .border-green-100 { border-color: #dcfce7; }
-        .border-green-200 { border-color: #bbf7d0; }
-        .border-blue-200 { border-color: #bfdbfe; }
-        .border-yellow-200 { border-color: #fef08a; }
-        .border-yellow-500 { border-color: #eab308; }
-
-        /* ---------- SHADOWS ---------- */
-        .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
-        .shadow { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1); }
-        .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); }
-        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); }
-        .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
-        .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
-
-        /* ---------- TRANSITIONS ---------- */
-        .transition-all { transition: all 0.3s ease; }
-        .transition-transform { transition: transform 0.3s ease; }
-        .duration-300 { transition-duration: 300ms; }
-        .rotate-180 { transform: rotate(180deg); }
+        /* ---------- DISPLAY / OVERFLOW ---------- */
+        .block { display: block; }
+        .inline-block { display: inline-block; }
+        .hidden { display: none; }
+        .overflow-hidden { overflow: hidden; }
+        .overflow-x-auto { overflow-x: auto; }
+        .list-disc { list-style-type: disc; }
+        .pl-5 { padding-left: 1.25rem; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .fixed { position: fixed; }
+        .top-0 { top: 0; }
+        .left-0 { left: 0; }
+        .right-0 { right: 0; }
+        .bottom-0 { bottom: 0; }
+        .z-10 { z-index: 10; }
+        .z-20 { z-index: 20; }
+        .pointer-events-none { pointer-events: none; }
 
         /* ---------- HOVER ---------- */
-        .hover\:bg-gray-50:hover { background-color: #f9fafb; }
-        .hover\:text-gray-800:hover { color: #1f2937; }
         .hover\:underline:hover { text-decoration: underline; }
+        .hover\:text-gray-800:hover { color: #1f2937; }
+        .hover\:bg-gray-50:hover { background-color: #f9fafb; }
 
-        /* ---------- SCROLL SNAP ---------- */
-        .scroll-snap-x { scroll-snap-type: x mandatory; }
-        .scroll-snap-start { scroll-snap-align: start; }
+        /* ---------- TRANSITIONS ---------- */
+        .transition-all { transition: all 0.2s ease; }
+        .duration-300 { transition-duration: 300ms; }
 
-        /* ---------- BACKDROP & SPECIAL ---------- */
-        .backdrop-blur {
-            -webkit-backdrop-filter: blur(8px);
-            backdrop-filter: blur(8px);
+        /* ---------- RESPONSIVE (md 768px, lg 1024px) ---------- */
+        @media (min-width: 768px) {
+            .md\:w-1\/2 { width: 50%; }
+            .md\:mb-0 { margin-bottom: 0; }
+            .md\:flex-row { flex-direction: row; }
+            .md\:block { display: block; }
+            .md\:hidden { display: none; }
+            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .md\:space-y-0 > * + * { margin-top: 0; }
         }
-
-        /* ---------- CUSTOM COMPONENTS (keeping original vision) ---------- */
-        .hero-gradient {
-            background: linear-gradient(135deg, #1e1b4b 0%, #ffffff 100%);
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
         }
-        .cta-primary {
-            background-color: #dc2626;
-            color: white;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(220, 38, 38, 0.3);
-            display: inline-block;
-            font-weight: 700;
-            cursor: pointer;
-        }
-        .cta-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(220, 38, 38, 0.4);
-        }
-        .cta-blue {
-            background-color: #1e40af;
-            color: white;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(30, 64, 175, 0.3);
-            display: inline-block;
-            font-weight: 700;
-            cursor: pointer;
-        }
-        .cta-blue:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(30, 64, 175, 0.4);
-        }
-        .cta-green {
-            background-color: #059669;
-            color: white;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(5, 150, 105, 0.3);
-            display: inline-block;
-            font-weight: 700;
-            cursor: pointer;
-        }
-        .cta-green:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(5, 150, 105, 0.4);
-        }
-
-        .testimonial-card {
-            transition: all 0.3s ease;
-            flex: 0 0 300px;
-            scroll-snap-align: start;
-        }
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-        }
-        .testimonial-carousel {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 20px;
-            padding: 10px 0;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .feature-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-        .value-card {
-            transition: all 0.3s ease;
-        }
-        .value-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        .value-card-compact {
-            padding: 0.75rem;
-        }
-        .value-card-compact h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        .value-card-compact p {
-            font-size: 0.75rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.3;
-        }
-        .value-card-compact .feature-icon {
-            width: 32px;
-            height: 32px;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .guarantee-section {
-            background: linear-gradient(135deg, #dcfce7 0%, #ffffff 100%);
-        }
-        .counter {
-            animation: countUp 1s ease-out;
-        }
-        @keyframes countUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .trust-section {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-        }
-        .payment-logo {
-            height: 40px;
-            object-fit: contain;
-            filter: grayscale(100%) contrast(0.5);
-            transition: all 0.3s ease;
-        }
-        .payment-logo-large {
-            height: 56px;
-            filter: none;
-        }
-        .payment-logo:hover {
-            filter: none;
-        }
-        .ssl-badge {
-            font-size: 0.75rem;
-            padding-top: 4px;
-        }
-        .ssl-badge i {
-            font-size: 0.9em;
-            margin-right: 4px;
-        }
-        .warning-box {
-            border-left: 4px solid #dc2626;
-            background-color: #fef2f2;
-        }
-        .control-box {
-            border-left: 4px solid #059669;
-            background-color: #f0fdf4;
-        }
-        .fact-box {
-            border-left: 4px solid #b91c1c;
-            background: linear-gradient(145deg, #fee2e2 0%, #fff5f5 100%);
-            box-shadow: 0 10px 15px -3px rgba(185, 28, 28, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .last-section {
-            background: linear-gradient(145deg, #0b1e3a 0%, #1a2f4f 50%, #2a3f5f 100%);
-            position: relative;
-            overflow: hidden;
-            color: #f0f4fa;
-        }
-        .last-section::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.05"><polygon points="0,0 100,0 50,100" fill="white"/></svg>');
-            background-size: cover;
-            pointer-events: none;
-        }
-        .last-section .content { position: relative; z-index: 2; }
-        .last-section .cta-glow {
-            background: linear-gradient(145deg, #fbbf24, #f59e0b);
-            color: #0b1e3a;
-            font-weight: 800;
-            box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.5);
-            transition: all 0.3s ease;
-            border: none;
-        }
-        .last-section .cta-glow:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px -5px rgba(245, 158, 11, 0.7);
-            background: linear-gradient(145deg, #fcd34d, #fbbf24);
-        }
-        .category-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            transition: all 0.2s ease;
-        }
-        .category-card:hover {
-            border-color: rgba(255, 215, 0, 0.5);
-            background: rgba(255, 255, 255, 0.12);
-        }
-        .last-section .badge-icon {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 40px;
-            padding: 0.25rem 0.75rem;
-            backdrop-filter: blur(4px);
-        }
-        .bonus-list-item {
-            display: flex;
-            align-items: center;
-            padding: 0.5rem 0;
-            border-bottom: 1px dashed #e5e7eb;
-        }
-        .bonus-list-item:last-child { border-bottom: none; }
-
-        /* ---------- BOOK & AUDIO PREVIEW ENHANCED ---------- */
-        .book-preview-popup {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.9);
-            z-index: 1002;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .book-preview-popup.active { display: flex; }
-        .book-preview-content {
-            background: white;
-            width: 100%;
-            max-width: 1000px;
-            height: 85vh;
-            border-radius: 16px;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-        }
-        .book-preview-iframe-wrapper {
-            flex: 1;
-            width: 100%;
-            position: relative;
-            background: #f1f5f9;
-        }
-        .book-preview-iframe-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: 0;
-        }
-        .book-preview-footer {
-            padding: 12px 20px;
-            background: white;
-            border-top: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: flex-end;
-        }
-        .book-preview-close {
-            position: absolute;
-            top: 16px; right: 16px;
-            background: white;
-            border: none;
-            width: 36px; height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-        .book-preview-done-btn {
-            background-color: #2563eb;
-            color: white;
-            font-weight: 600;
-            padding: 8px 28px;
-            border-radius: 40px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 14px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
-        .book-preview-done-btn:hover { background-color: #1d4ed8; transform: scale(1.02); }
-
-        /* Professional preview buttons (Look Inside / Sample) */
-        .preview-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 40px;
-            background: white;
-            border: 2px solid #2563eb;
-            color: #2563eb;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-        }
-        .preview-btn:hover {
-            background: #2563eb;
-            color: white;
-            box-shadow: 0 4px 8px rgba(37,99,235,0.25);
-        }
-        .preview-btn i { font-size: 1em; }
-
-        /* ---------- MOBILE RESPONSIVE FIXES ---------- */
         @media (max-width: 640px) {
             body { font-size: 14px; padding-bottom: 40px; }
             .container { padding-left: 0.75rem; padding-right: 0.75rem; }
@@ -606,22 +268,103 @@
             .payment-logo { height: 32px; }
             .payment-logo-large { height: 44px; }
             .book-preview-content { height: 70vh; }
-            /* Buttons full-width & larger on mobile */
-            .cta-primary,
-            .cta-blue,
-            .cta-green {
-                display: block;
-                width: 100%;
-                text-align: center;
-                padding: 1rem 1.5rem;
-                font-size: 1.25rem;
-            }
-            .preview-btn {
-                width: auto;
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-            }
+            .cta-primary, .cta-blue, .cta-green { width: 100%; text-align: center; }
         }
+
+        /* ---------- CUSTOM COMPONENTS (unchanged) ---------- */
+        .hero-gradient { background: linear-gradient(135deg, #1e1b4b 0%, #ffffff 100%); }
+        .cta-primary { background-color: #dc2626; color: white; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(220,38,38,0.3); display: inline-block; }
+        .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 8px rgba(220,38,38,0.4); }
+        .cta-blue { background-color: #1e40af; color: white; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(30,64,175,0.3); display: inline-block; }
+        .cta-blue:hover { transform: translateY(-2px); box-shadow: 0 6px 8px rgba(30,64,175,0.4); }
+        .cta-green { background-color: #059669; color: white; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(5,150,105,0.3); display: inline-block; }
+        .cta-green:hover { transform: translateY(-2px); box-shadow: 0 6px 8px rgba(5,150,105,0.4); }
+        .testimonial-card { transition: all 0.3s ease; flex: 0 0 300px; scroll-snap-align: start; }
+        .testimonial-card:hover { transform: translateY(-5px); }
+        .testimonial-carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 20px; padding: 10px 0; -webkit-overflow-scrolling: touch; }
+        .feature-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
+        .value-card { transition: all 0.3s ease; }
+        .value-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .value-card-compact { padding: 0.75rem; }
+        .value-card-compact h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+        .value-card-compact p { font-size: 0.75rem; margin-bottom: 0.5rem; line-height: 1.3; }
+        .value-card-compact .feature-icon { width: 32px; height: 32px; font-size: 1rem; margin-bottom: 0.5rem; }
+        .guarantee-section { background: linear-gradient(135deg, #dcfce7 0%, #ffffff 100%); }
+        .counter { animation: countUp 1s ease-out; }
+        @keyframes countUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .trust-section { background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); }
+        .payment-logo { height: 40px; object-fit: contain; filter: grayscale(100%) contrast(0.5); transition: all 0.3s ease; }
+        .payment-logo-large { height: 56px; filter: none; }
+        .payment-logo:hover { filter: none; }
+        .ssl-badge { font-size: 0.75rem; padding-top: 4px; }
+        .ssl-badge i { font-size: 0.9em; margin-right: 4px; }
+        .warning-box { border-left: 4px solid #dc2626; background-color: #fef2f2; }
+        .control-box { border-left: 4px solid #059669; background-color: #f0fdf4; }
+        .fact-box { border-left: 4px solid #b91c1c; background: linear-gradient(145deg, #fee2e2 0%, #fff5f5 100%); box-shadow: 0 10px 15px -3px rgba(185,28,28,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); }
+        .last-section { background: linear-gradient(145deg, #0b1e3a 0%, #1a2f4f 50%, #2a3f5f 100%); position: relative; overflow: hidden; color: #f0f4fa; }
+        .last-section::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.05"><polygon points="0,0 100,0 50,100" fill="white"/></svg>'); background-size: cover; pointer-events: none; }
+        .last-section .content { position: relative; z-index: 2; }
+        .last-section .cta-glow { background: linear-gradient(145deg, #fbbf24, #f59e0b); color: #0b1e3a; font-weight: 800; box-shadow: 0 10px 25px -5px rgba(245,158,11,0.5); transition: all 0.3s ease; border: none; }
+        .last-section .cta-glow:hover { transform: scale(1.05); box-shadow: 0 15px 30px -5px rgba(245,158,11,0.7); background: linear-gradient(145deg, #fcd34d, #fbbf24); }
+        .category-card { background: rgba(255,255,255,0.08); backdrop-filter: blur(8px); border: 1px solid rgba(255,215,0,0.2); transition: all 0.2s ease; }
+        .category-card:hover { border-color: rgba(255,215,0,0.5); background: rgba(255,255,255,0.12); }
+        .last-section .badge-icon { background: rgba(255,255,255,0.1); border-radius: 40px; padding: 0.25rem 0.75rem; backdrop-filter: blur(4px); }
+        .bonus-list-item { display: flex; align-items: center; padding: 0.5rem 0; border-bottom: 1px dashed #e5e7eb; }
+        .bonus-list-item:last-child { border-bottom: none; }
+        .book-preview-popup { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 1002; justify-content: center; align-items: center; padding: 20px; }
+        .book-preview-popup.active { display: flex; }
+        .book-preview-content { background: white; width: 100%; max-width: 1000px; height: 85vh; border-radius: 16px; overflow: hidden; position: relative; display: flex; flex-direction: column; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+        .book-preview-iframe-wrapper { flex: 1; width: 100%; position: relative; background: #f1f5f9; }
+        .book-preview-iframe-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .book-preview-footer { padding: 12px 20px; background: white; border-top: 1px solid #e5e7eb; display: flex; justify-content: flex-end; }
+        .book-preview-done-btn { background-color: #2563eb; color: white; font-weight: 600; padding: 8px 28px; border-radius: 40px; border: none; cursor: pointer; transition: all 0.2s; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .book-preview-done-btn:hover { background-color: #1d4ed8; transform: scale(1.02); }
+        .book-preview-close { position: absolute; top: 16px; right: 16px; background: white; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .video-player-wrapper { background: #0f172a; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 1px solid #334155; }
+        .video-player-wrapper video { width: 100%; display: block; border-radius: 0; }
+
+        /* ---------- ENHANCED PREVIEW BUTTONS ---------- */
+        .book-preview-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 1rem;
+            border: 1px solid #2563eb;
+            color: #2563eb;
+            background: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.2s;
+            line-height: 1.2;
+        }
+        .book-preview-btn:hover {
+            background: #eff6ff;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(37,99,235,0.2);
+        }
+        .audio-preview-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.45rem 1.1rem;
+            border: none;
+            background: #f3f4f6;
+            color: #1f2937;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .audio-preview-btn:hover {
+            background: #e5e7eb;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+        }
+        .audio-preview-btn i { font-size: 0.9rem; }
     </style>
     <base target="_blank">
 </head>
@@ -636,7 +379,7 @@
         });
     </script>
 
-    <!-- Book Preview Popup (src loaded on click / preloaded after load) -->
+    <!-- Book Preview Popup (src loaded on click) -->
     <div id="bookPreviewPopup" class="book-preview-popup" onclick="closeBookPreview(event)">
         <div class="book-preview-content" onclick="event.stopPropagation()">
             <button class="book-preview-close" onclick="closeBookPreview()"><i class="fas fa-times text-gray-700"></i></button>
@@ -756,7 +499,7 @@
         </div>
     </section>
 
-    <!-- Video Section (preload="none") -->
+    <!-- Video Section -->
     <section class="py-12 px-4 bg-gray-50 border-t border-b border-gray-200">
         <div class="container mx-auto max-w-4xl">
             <div class="mb-8">
@@ -845,7 +588,6 @@
                     <p class="text-gray-700 text-sm">I blanked on a client's name mid-pitch. I'd worked with them for three years. The meeting spine from this system meant I never had to hold that information in my head again — it was on the card in front of me. I haven't had a visible lapse since.</p>
                     <p class="text-xs text-gray-400 mt-2">3 days ago</p>
                 </div>
-
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
                         <img src="images/image2.webp" alt="Amina Reeves" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy" decoding="async">
@@ -860,7 +602,6 @@
                     <p class="text-gray-700 text-sm">My GP told me it was just stress and to "reduce my workload." I run a department. This book gave me the actual neuroscience of what was happening and exactly what to do about it on a bad-sleep morning. The triage protocol alone was worth ten times the price.</p>
                     <p class="text-xs text-gray-400 mt-2">1 week ago</p>
                 </div>
-
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
                         <img src="images/image3.webp" alt="Claire Morrison" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy" decoding="async">
@@ -875,7 +616,6 @@
                     <p class="text-gray-700 text-sm">I was considering reducing to four days a week because I couldn't trust my brain by Thursday afternoon. The cognitive offloading system in Chapter 7 removed the working memory overhead that was killing me. I stayed full-time. I got the promotion.</p>
                     <p class="text-xs text-gray-400 mt-2">5 days ago</p>
                 </div>
-
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
                         <img src="images/image4.webp" alt="Jennifer Taylor" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy" decoding="async">
@@ -890,7 +630,6 @@
                     <p class="text-gray-700 text-sm">In my profession, a verbal lapse in court is not a small thing. The strategic deferral scripts and the word-recovery pivots have saved me multiple times. I don't use them because I'm weak. I use them because I'm precise.</p>
                     <p class="text-xs text-gray-400 mt-2">yesterday</p>
                 </div>
-
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
                         <img src="images/image5.webp" alt="Leliana Shuzhen" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy" decoding="async">
@@ -905,7 +644,6 @@
                     <p class="text-gray-700 text-sm">I thought I was developing early-onset dementia. The book explained the gap between subjective impairment and objective performance in a way that actually calmed my nervous system. The anxiety spiral interrupt is now my first move on a bad morning, not my tenth.</p>
                     <p class="text-xs text-gray-400 mt-2">4 days ago</p>
                 </div>
-
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
                         <img src="images/image6.webp" alt="Helen Walker" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy" decoding="async">
@@ -920,7 +658,6 @@
                     <p class="text-gray-700 text-sm">The managing-up scripts are surgical. I used the scope-management language to protect my calendar during a high-symptom month and my director actually thanked me for being "so strategically organised." He has no idea. That is exactly the point.</p>
                     <p class="text-xs text-gray-400 mt-2">1 week ago</p>
                 </div>
-
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
                         <img src="images/image7.webp" alt="Rachel Donovan" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy" decoding="async">
@@ -935,7 +672,6 @@
                     <p class="text-gray-700 text-sm">I've read three menopause books. They all told me what was happening. This is the only one that told me what to do at 8:47am on a fog day when I have a client call at 9:00am. That difference is everything.</p>
                     <p class="text-xs text-gray-400 mt-2">6 days ago</p>
                 </div>
-
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-3">
                         <img src="images/image8.webp" alt="Diane Lawrence" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy" decoding="async">
@@ -962,35 +698,35 @@
         </div>
     </section>
 
-    <!-- What You'll Get Inside Section (preview buttons enhanced) -->
+    <!-- What You'll Get Inside Section -->
     <section id="whats-inside" class="py-20 bg-blue-50 px-4">
         <div class="container mx-auto max-w-6xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Your Complete Perimenopause Performance System</h2>
             <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">Not symptom tracking. Not wellness advice. An operational system for maintaining executive function, professional credibility, and privacy during the menopausal transition.</p>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-3 mb-12">
-                <!-- CARD 1: EBOOK (professional preview button) -->
+                <!-- CARD 1: EBOOK -->
                 <div class="value-card value-card-compact bg-white p-3 rounded-xl shadow-md">
                     <img src="images/ebookmockup.webp" alt="Ebook Mockup" class="w-3/4 mx-auto rounded-lg mb-2" loading="lazy" decoding="async">
                     <p class="text-xs text-gray-400 italic text-center mb-1">Delivered digitally</p>
                     <h3 class="text-sm font-bold mb-1 text-blue-800">THE BUSY WOMAN'S PERIMENOPAUSE EBOOK</h3>
                     <p class="text-gray-600 text-xs mb-2">200+ page operational bible. Every protocol, script, and framework to keep your edge at work — searchable, private, instant.</p>
                     <div class="text-center mb-1">
-                        <button onclick="openBookPreview()" class="preview-btn">
+                        <button onclick="openBookPreview()" class="book-preview-btn">
                             <i class="fas fa-book-open"></i> Look Inside
                         </button>
                     </div>
                     <div class="text-right text-xs font-bold text-gray-500">Value $97</div>
                 </div>
-                <!-- CARD 2: AUDIOBOOK (professional sample button) -->
+                <!-- CARD 2: AUDIOBOOK (now with titled audio preview) -->
                 <div class="value-card value-card-compact bg-white p-3 rounded-xl shadow-md">
                     <img src="images/audiobookmockup.webp" alt="Audiobook Mockup" class="w-3/4 mx-auto rounded-lg mb-2" loading="lazy" decoding="async">
                     <p class="text-xs text-gray-400 italic text-center mb-1">Delivered digitally</p>
                     <h3 class="text-sm font-bold mb-1 text-blue-800">AUDIOBOOK: PRIVATE COMMUTE COACH</h3>
                     <p class="text-gray-600 text-xs mb-2">2+ hours of invisible coaching. Pre-meeting priming, fog‑day commutes, or nights when reading feels impossible.</p>
                     <div class="text-center mb-1">
-                        <button id="audioSampleBtn" onclick="toggleAudioSample()" class="preview-btn">
-                            <i class="fas fa-play"></i> Sample
+                        <button id="audioSampleBtn" onclick="toggleAudioSample()" class="audio-preview-btn">
+                            <i class="fas fa-play"></i> Audio Preview
                         </button>
                     </div>
                     <div class="text-right text-xs font-bold text-gray-500">Value $127</div>
@@ -1026,26 +762,22 @@
                 <p class="text-xs text-gray-400 italic mb-4">All items are delivered digitally</p>
                 <h3 class="text-2xl font-bold mb-4">Total Value: $489</h3>
                 <p class="text-gray-600 mb-6">What is your professional reputation worth? Your earning trajectory? Your peace of mind in the rooms that matter?</p>
-
                 <div class="mb-3">
                     <span class="inline-block bg-green-100 text-green-800 font-bold py-2 px-4 rounded-full text-sm">
                         Prevent $5,000+ Loss in Quarterly Earnings
                     </span>
                 </div>
-
                 <div class="text-center mb-2">
                     <a href="https://www.checkout-ds24.com/product/692610" class="cta-blue font-bold py-4 px-8 rounded-lg text-center inline-block">
                         CLAIM MY PERFORMANCE SYSTEM - $47
                     </a>
                 </div>
-
                 <div class="flex items-center justify-center mt-4 gap-4">
                     <img src="/images/mastercard.svg" alt="Mastercard" class="payment-logo payment-logo-large" style="filter: none; height: 56px;" loading="lazy" decoding="async">
                     <img src="/images/visa.svg" alt="Visa" class="payment-logo payment-logo-large" style="filter: none; height: 72px;" loading="lazy" decoding="async">
                     <img src="/images/paypal.svg" alt="PayPal" class="payment-logo payment-logo-large" style="filter: none; height: 56px;" loading="lazy" decoding="async">
                     <img src="/images/applepay.svg" alt="Apple Pay" class="payment-logo payment-logo-large" style="filter: none; height: 72px;" loading="lazy" decoding="async">
                 </div>
-
                 <p class="text-gray-600 mt-4">100% Risk Free • Instant Access • Money-Back Guarantee</p>
             </div>
         </div>
@@ -1055,7 +787,6 @@
     <section class="py-20 bg-white px-4">
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">The <span class="text-red-600">Concealment Paradox</span> No One Talks About</h2>
-
             <div class="space-y-6 mb-10">
                 <div class="bg-gray-50 p-6 rounded-lg">
                     <p class="font-bold mb-2">Right now, you are caught in what occupational researchers call "The Concealment Paradox":</p>
@@ -1066,13 +797,10 @@
                         <li>Your prefrontal cortex is already compromised by hormonal volatility — and you are taxing it further with concealment labour</li>
                     </ul>
                 </div>
-
                 <div class="py-6 text-center border-t border-b border-gray-300">
                     <p class="text-xl md:text-2xl font-light italic text-gray-700">“The cognitive effort of hiding symptoms costs more than the symptoms themselves.”</p>
                 </div>
-
                 <p>When I faced this, my biggest fear wasn't the hot flush. It was what would happen to:</p>
-
                 <div class="grid md:grid-cols-2 gap-4 mb-6">
                     <div class="bg-red-50 p-4 rounded-lg">
                         <p class="font-bold text-red-700">1. My Professional Reputation</p>
@@ -1083,7 +811,6 @@
                         <p class="text-sm">Peak earning years (ages 45-55) threatened by presenteeism, reduced hours, or premature exit. UK data: $1.5B annual loss.</p>
                     </div>
                 </div>
-
                 <div class="bg-yellow-50 border-l-4 border-yellow-500 p-5 rounded-r-lg">
                     <div class="flex items-start">
                         <i class="fas fa-chart-bar text-yellow-600 text-2xl mr-3"></i>
@@ -1093,7 +820,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="space-y-3">
                     <div class="flex items-start">
                         <span class="text-red-500 mr-3 text-xl">⚠️</span>
@@ -1110,27 +836,14 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="flex justify-center items-center gap-4 md:gap-8 py-6 text-center">
-                    <div class="flex flex-col items-center">
-                        <i class="fas fa-brain text-3xl text-purple-600"></i>
-                        <span class="text-xs font-medium mt-1">Brain</span>
-                    </div>
+                    <div class="flex flex-col items-center"><i class="fas fa-brain text-3xl text-purple-600"></i><span class="text-xs font-medium mt-1">Brain</span></div>
                     <i class="fas fa-arrow-right text-gray-400"></i>
-                    <div class="flex flex-col items-center">
-                        <i class="fas fa-mask text-3xl text-gray-600"></i>
-                        <span class="text-xs font-medium mt-1">Mask</span>
-                    </div>
+                    <div class="flex flex-col items-center"><i class="fas fa-mask text-3xl text-gray-600"></i><span class="text-xs font-medium mt-1">Mask</span></div>
                     <i class="fas fa-arrow-right text-gray-400"></i>
-                    <div class="flex flex-col items-center">
-                        <i class="fas fa-tired text-3xl text-orange-500"></i>
-                        <span class="text-xs font-medium mt-1">Exhaustion</span>
-                    </div>
+                    <div class="flex flex-col items-center"><i class="fas fa-tired text-3xl text-orange-500"></i><span class="text-xs font-medium mt-1">Exhaustion</span></div>
                     <i class="fas fa-arrow-right text-gray-400"></i>
-                    <div class="flex flex-col items-center">
-                        <i class="fas fa-person-falling text-3xl text-red-600"></i>
-                        <span class="text-xs font-medium mt-1">Collapse</span>
-                    </div>
+                    <div class="flex flex-col items-center"><i class="fas fa-person-falling text-3xl text-red-600"></i><span class="text-xs font-medium mt-1">Collapse</span></div>
                 </div>
             </div>
         </div>
@@ -1141,7 +854,6 @@
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-3xl font-bold text-center mb-6">Why HR, Wellness Apps, and Doctor's Books Can't Save Your Career</h2>
             <p class="text-center text-gray-600 mb-8">I spent $2,400 on executive coaching that assumed I had a confidence problem. What I actually had was a progesterone‑GABA‑sleep problem that no amount of "leaning in" could fix.</p>
-
             <div class="overflow-x-auto mb-10">
                 <table class="min-w-full bg-white rounded-lg shadow-md border border-gray-200 text-sm">
                     <thead class="bg-gray-100">
@@ -1193,7 +905,6 @@
     <section id="pricing" class="py-20 guarantee-section px-4">
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Will You Leave Your Career to Chance Or Take Control?</h2>
-
             <div class="bg-white rounded-xl shadow-2xl overflow-hidden max-w-md mx-auto">
                 <div class="p-8">
                     <div class="text-center mb-6">
@@ -1205,60 +916,21 @@
                             <p class="text-green-700 font-bold">Prevent $5,000+ Loss in Quarterly Earnings</p>
                         </div>
                     </div>
-
                     <ul class="space-y-4 mb-8">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <span><strong>"The Busy Woman's Perimenopause" Ebook</strong></span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <span><strong>The Busy Woman's Perimenopause Audiobook</strong></span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <span><strong>Perimenopause Support 7-Days Meal Plan (Vegan)</strong></span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <span><strong>Perimenopause Support 7-Days Meal Plan</strong></span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <div>
-                                <span><strong>15-MINUTES HOME WORKOUT PLAN</strong></span>
-                                <p class="text-sm text-gray-600">For Strength during Perimenopause</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <div>
-                                <span><strong>The Fog-Day Playbook</strong></span>
-                                <p class="text-sm text-gray-600">Red/amber/green assessment & supported thinking protocols is included in ebook</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <div>
-                                <span><strong>Anxiety Spiral Interrupt System</strong></span>
-                                <p class="text-sm text-gray-600">5-minute CBT-based autonomic reset is included in ebook</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <div>
-                                <span><strong>Sleep-to-Performance Recovery</strong></span>
-                                <p class="text-sm text-gray-600">CBT-I derived next-day clarity protocols is included in ebook</p>
-                            </div>
-                        </li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span><strong>"The Busy Woman's Perimenopause" Ebook</strong></span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span><strong>The Busy Woman's Perimenopause Audiobook</strong></span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span><strong>Perimenopause Support 7-Days Meal Plan (Vegan)</strong></span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span><strong>Perimenopause Support 7-Days Meal Plan</strong></span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><div><span><strong>15-MINUTES HOME WORKOUT PLAN</strong></span><p class="text-sm text-gray-600">For Strength during Perimenopause</p></div></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><div><span><strong>The Fog-Day Playbook</strong></span><p class="text-sm text-gray-600">Red/amber/green assessment & supported thinking protocols is included in ebook</p></div></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><div><span><strong>Anxiety Spiral Interrupt System</strong></span><p class="text-sm text-gray-600">5-minute CBT-based autonomic reset is included in ebook</p></div></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><div><span><strong>Sleep-to-Performance Recovery</strong></span><p class="text-sm text-gray-600">CBT-I derived next-day clarity protocols is included in ebook</p></div></li>
                     </ul>
-
                     <div class="text-center mb-6">
                         <a href="https://www.checkout-ds24.com/product/692610" class="cta-blue font-bold py-4 px-8 rounded-lg text-center inline-block w-full text-xl">
                             GET COMPLETE SYSTEM - $47
                         </a>
                     </div>
-
                     <div class="flex flex-col items-center">
                         <div class="flex items-center justify-center mb-2 gap-4">
                             <img src="/images/mastercard.svg" alt="Mastercard" class="payment-logo payment-logo-large" style="filter: none; height: 56px;" loading="lazy" decoding="async">
@@ -1271,26 +943,18 @@
                         </p>
                     </div>
                 </div>
-
                 <div class="bg-green-100 text-green-800 p-6 text-center">
                     <div class="flex items-center justify-center">
                         <i class="fas fa-shield-alt text-2xl mr-3"></i>
                         <div>
-                            <p class="font-bold text-lg">
-                                100% Risk-Free 60-Day Guarantee
-                            </p>
+                            <p class="font-bold text-lg">100% Risk-Free 60-Day Guarantee</p>
                         </div>
                     </div>
                 </div>
             </div>
-
             <p class="text-center text-red-600 font-bold mt-6 counter">124 Women Bought This Week</p>
-
             <div class="mt-8 p-4 bg-red-50 rounded-lg text-center max-w-lg mx-auto">
-                <p class="font-bold text-red-700">
-                    <i class="fas fa-exclamation-triangle mr-2"></i>
-                    Every day without this system increases your exposure to the concealment paradox
-                </p>
+                <p class="font-bold text-red-700"><i class="fas fa-exclamation-triangle mr-2"></i>Every day without this system increases your exposure to the concealment paradox</p>
             </div>
         </div>
     </section>
@@ -1299,7 +963,6 @@
     <section id="faq" class="py-20 bg-white px-4">
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-2xl font-bold text-center mb-16">Questions Professional Women Are Asking</h2>
-
             <div class="space-y-4">
                 <div class="bg-gray-50 p-6 rounded-lg">
                     <button class="flex justify-between items-center w-full text-left font-bold text-lg">
@@ -1310,7 +973,6 @@
                         <p class="mb-3"><strong>No, this is not medical advice.</strong> This is an operational performance system based on occupational neuroscience and evidence-based behavioural protocols. While the content is grounded in peer-reviewed research (including the MENOS@Work RCT and SWAN longitudinal data), it is designed as a practical manual for the workday, not a clinical treatment guide. For medical decisions — including HRT — you should consult a qualified clinician. Think of this as the strategic operations manual you use while navigating care, not a replacement for it.</p>
                     </div>
                 </div>
-
                 <div class="bg-gray-50 p-6 rounded-lg">
                     <button class="flex justify-between items-center w-full text-left font-bold text-lg">
                         <span>How do I access the materials after purchasing?</span>
@@ -1320,7 +982,6 @@
                         <p class="mb-3">Immediately. After completing your secure checkout, you receive an email with download links for all materials. The ebook is in PDF format (readable on any device), the Podcast episode is in MP3 format, the Community joining link will be included. You can access everything on your computer, phone, or tablet.</p>
                     </div>
                 </div>
-
                 <div class="bg-gray-50 p-6 rounded-lg">
                     <button class="flex justify-between items-center w-full text-left font-bold text-lg">
                         <span>Will my employer know I bought this?</span>
@@ -1330,7 +991,6 @@
                         <p class="mb-3"><strong>No.</strong> This is a private digital purchase. Your statement shows a generic merchant descriptor, not "menopause" or any health-related branding. There is no employer notification, no HR integration, no corporate sponsorship, and no requirement to log into a workplace benefits portal. The entire system is designed for women who need to protect their privacy. You download the materials directly to your personal devices.</p>
                     </div>
                 </div>
-
                 <div class="bg-gray-50 p-6 rounded-lg">
                     <button class="flex justify-between items-center w-full text-left font-bold text-lg">
                         <span>What if I am already on HRT or considering it?</span>
@@ -1340,7 +1000,6 @@
                         <p class="mb-3">This system is a <strong>parallel track</strong>, not an alternative to medical care. HRT addresses baseline hormonal optimisation. This system addresses the immediate, day-to-day operational requirements of surviving high-stakes work while your body transitions. Most women who manage this period most effectively address both simultaneously: appropriate medical support <em>plus</em> the operational infrastructure for the working day. The book includes a chapter on how to frame the clinical conversation for best outcomes.</p>
                     </div>
                 </div>
-
                 <div class="bg-gray-50 p-6 rounded-lg">
                     <button class="flex justify-between items-center w-full text-left font-bold text-lg">
                         <span>How is this different from menopause apps like Peppy or Stella?</span>
@@ -1350,7 +1009,6 @@
                         <p class="mb-3">Menopause apps focus on symptom tracking, telehealth access, and community support. They are medically valuable but operationally thin. Peppy's own evaluation showed "improvement in reported work impairment was low" despite symptom reduction. This system is the opposite: it does not track your flushes. It gives you the exact script to use when you blank on a word in a client meeting. It is built for performance preservation, not symptom logging.</p>
                     </div>
                 </div>
-
                 <div class="bg-gray-50 p-6 rounded-lg">
                     <button class="flex justify-between items-center w-full text-left font-bold text-lg">
                         <span>$47 seems too cheap. What is the catch?</span>
@@ -1376,7 +1034,6 @@
         <div class="container mx-auto max-w-4xl text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">The Most Dangerous Decision <br>Is Doing Nothing</h2>
             <p class="text-xl text-gray-600 mb-10">Right now, you are in one of two categories:</p>
-
             <div class="grid md:grid-cols-2 gap-6 mb-10">
                 <div class="bg-red-50 p-6 rounded-lg shadow-sm border border-red-100">
                     <h3 class="font-bold text-2xl mb-3 text-red-700">Category 1</h3>
@@ -1389,21 +1046,17 @@
                     <p class="font-bold text-green-600 text-lg">Result: Career continuity, privacy preserved, peace of mind</p>
                 </div>
             </div>
-
             <p class="text-2xl font-light italic mb-8">Which category do you want to be in when you walk into work tomorrow?</p>
-
             <div class="mb-6">
                 <a href="https://www.checkout-ds24.com/product/692610" class="cta-primary font-bold py-4 px-8 rounded-lg inline-block text-xl">
                     PROCEED SECURELY - $47
                 </a>
             </div>
-
             <div class="flex flex-wrap items-center justify-center gap-4 text-sm mb-6">
                 <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full flex items-center"><i class="fas fa-shield-alt mr-2"></i>60-Day Money Back Guarantee</span>
                 <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full flex items-center"><i class="fas fa-lock mr-2"></i>Secure SSL Encryption</span>
                 <span class="bg-purple-100 text-purple-700 px-4 py-2 rounded-full flex items-center"><i class="fas fa-users mr-2"></i>Brought by 3,200+ Professional Women</span>
             </div>
-
             <div class="p-4 bg-yellow-50 rounded-lg border border-yellow-200 max-w-lg mx-auto">
                 <p class="font-bold text-yellow-800"><i class="fas fa-clock mr-2 text-yellow-600"></i>Your Peak Earning Years Are Happening Right Now.<br>Don't Let these Hormones Dictate this Crucial Period of your Life.</p>
             </div>
@@ -1415,7 +1068,7 @@
 
     <!-- Optimized JavaScript -->
     <script>
-        // Deferred Digistore promo code (loaded after DOM ready)
+        // Deferred Digistore promo code + smart checkout preload
         window.addEventListener('DOMContentLoaded', function() {
             var digiScript = document.createElement('script');
             digiScript.src = "https://www.digistore24-scripts.com/service/digistore.js";
@@ -1423,25 +1076,41 @@
             document.head.appendChild(digiScript);
 
             digiScript.onload = function() {
-                digistorePromocode({
-                    "product_id": 692610,
-                    "adjust_domain": true
-                });
+                digistorePromocode({ "product_id": 692610, "adjust_domain": true });
+                // After promocode applies, preload the final checkout URL
+                setTimeout(preloadCheckout, 300);
             };
+            // Fallback if already cached
             if (typeof digistorePromocode === 'function') {
-                digistorePromocode({
-                    "product_id": 692610,
-                    "adjust_domain": true
+                digistorePromocode({ "product_id": 692610, "adjust_domain": true });
+                setTimeout(preloadCheckout, 100);
+            }
+
+            function preloadCheckout() {
+                var checkoutLinks = document.querySelectorAll('a[href*="product/692610"]');
+                if (checkoutLinks.length > 0) {
+                    var finalUrl = checkoutLinks[0].getAttribute('href');
+                    if (finalUrl) {
+                        // Preload with fetch to warm up the final destination
+                        fetch(finalUrl, { mode: 'no-cors', cache: 'force-cache' });
+                    }
+                }
+                // Attach mouseenter preload on all buy buttons
+                checkoutLinks.forEach(function(link) {
+                    link.addEventListener('mouseenter', function() {
+                        var url = link.getAttribute('href');
+                        if (url) fetch(url, { mode: 'no-cors', cache: 'force-cache' });
+                    }, { once: true });
                 });
             }
         });
 
-        // Book Preview Lazy Load (opens popup)
+        // Book Preview Lazy Load
         function openBookPreview() {
             var popup = document.getElementById('bookPreviewPopup');
             var iframe = popup.querySelector('iframe');
             if (iframe && !iframe.src) {
-                iframe.src = iframe.dataset.src;  // fallback if not preloaded
+                iframe.src = iframe.dataset.src;
             }
             popup.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1454,7 +1123,7 @@
             }
         }
 
-        // Toggle audiobook sample
+        // Toggle audiobook sample playback with title change
         function toggleAudioSample() {
             var audio = document.getElementById('audioSample');
             if (audio.paused) {
@@ -1464,19 +1133,18 @@
             }
         }
 
-        // Update audiobook button text based on playback state
         document.addEventListener('DOMContentLoaded', function() {
             var audio = document.getElementById('audioSample');
             var btn = document.getElementById('audioSampleBtn');
             if (audio && btn) {
                 audio.addEventListener('play', function() {
-                    btn.innerHTML = '<i class="fas fa-pause"></i> Pause';
+                    btn.innerHTML = '<i class="fas fa-pause"></i> Playing Preview';
                 });
                 audio.addEventListener('pause', function() {
-                    btn.innerHTML = '<i class="fas fa-play"></i> Sample';
+                    btn.innerHTML = '<i class="fas fa-play"></i> Audio Preview';
                 });
                 audio.addEventListener('ended', function() {
-                    btn.innerHTML = '<i class="fas fa-play"></i> Sample';
+                    btn.innerHTML = '<i class="fas fa-play"></i> Audio Preview';
                 });
             }
         });
@@ -1491,7 +1159,7 @@
             });
         });
 
-        // Counter & smooth scroll & checkout preload (mouseenter + window.load)
+        // Counter & smooth scroll
         document.addEventListener('DOMContentLoaded', function() {
             var counters = document.querySelectorAll('.counter');
             var baseCount = 124;
@@ -1508,35 +1176,10 @@
                     if (targetId === '#') return;
                     var targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 20,
-                            behavior: 'smooth'
-                        });
+                        window.scrollTo({ top: targetElement.offsetTop - 20, behavior: 'smooth' });
                     }
                 });
             });
-
-            // Aggressive prefetch on hover for checkout + mouseenter
-            var checkoutUrl = 'https://www.checkout-ds24.com/product/692610';
-            var links = document.querySelectorAll('a[href="' + checkoutUrl + '"]');
-            links.forEach(function(link) {
-                link.addEventListener('mouseenter', function() {
-                    fetch(checkoutUrl, { mode: 'no-cors', priority: 'low' });
-                }, { once: true });
-            });
-
-            // Preload checkout page after window load (in queue)
-            window.addEventListener('load', function() {
-                fetch(checkoutUrl, { mode: 'no-cors', priority: 'low' });
-            }, { once: true });
-
-            // Preload book preview iframe after all required elements (on load)
-            window.addEventListener('load', function() {
-                var bookIframe = document.querySelector('#bookPreviewPopup iframe');
-                if (bookIframe && !bookIframe.src && bookIframe.dataset.src) {
-                    bookIframe.src = bookIframe.dataset.src; // background preload
-                }
-            }, { once: true });
         });
     </script>
 
