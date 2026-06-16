@@ -11,11 +11,7 @@
     <link rel="preconnect" href="https://www.checkout-ds24.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.checkout-ds24.com">
     <link rel="dns-prefetch" href="https://www.digistore24-scripts.com">
-    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-
-    <!-- Prefetch the checkout page (silent background download) -->
-    <link rel="prefetch" href="https://www.checkout-ds24.com/product/692610" as="document">
 
     <!-- Font loading: non‑blocking, with instant system fallback -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" crossorigin>
@@ -25,57 +21,328 @@
     <!-- Font Awesome (non‑blocking, already optimized) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
 
-    <!-- Tailwind CSS (deferred, non‑blocking) -->
-    <script src="https://cdn.tailwindcss.com" defer></script>
-
     <!-- Preload hero image for LCP -->
     <link rel="preload" as="image" href="images/perimenopause.webp" fetchpriority="high">
 
-    <!-- Inline critical CSS – everything needed for the first paint -->
+    <!-- Inline critical CSS – everything needed for the first paint (NO Tailwind CDN) -->
     <style>
-        /* System font stack ensures text is visible before Inter loads */
+        /* ---------- RESET & BASE ---------- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Inter';
             margin: 0;
             scroll-behavior: smooth;
             padding-bottom: 50px;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
         }
 
+        /* ---------- TYPOGRAPHY ---------- */
+        .text-xs { font-size: 0.75rem; }
+        .text-sm { font-size: 0.875rem; }
+        .text-base { font-size: 1rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-3xl { font-size: 1.875rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .text-5xl { font-size: 3rem; }
+        .font-light { font-weight: 300; }
+        .font-medium { font-weight: 500; }
+        .font-semibold { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .font-extrabold { font-weight: 800; }
+        .italic { font-style: italic; }
+        .leading-tight { line-height: 1.25; }
+        .leading-normal { line-height: 1.5; }
+        .text-left { text-align: left; }
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .text-gray-200 { color: #e5e7eb; }
+        .text-gray-400 { color: #9ca3af; }
+        .text-gray-500 { color: #6b7280; }
+        .text-gray-600 { color: #4b5563; }
+        .text-gray-700 { color: #374151; }
+        .text-gray-800 { color: #1f2937; }
+        .text-red-500 { color: #ef4444; }
+        .text-red-600 { color: #dc2626; }
+        .text-red-700 { color: #b91c1c; }
+        .text-red-800 { color: #991b1b; }
+        .text-green-500 { color: #10b981; }
+        .text-green-600 { color: #059669; }
+        .text-green-700 { color: #047857; }
+        .text-green-800 { color: #065f46; }
+        .text-blue-600 { color: #2563eb; }
+        .text-blue-700 { color: #1d4ed8; }
+        .text-blue-800 { color: #1e3a8a; }
+        .text-blue-900 { color: #1e3a8a; }
+        .text-yellow-400 { color: #facc15; }
+        .text-yellow-600 { color: #ca8a04; }
+        .text-yellow-800 { color: #854d0e; }
+        .text-orange-500 { color: #f97316; }
+        .text-purple-600 { color: #9333ea; }
+        .text-purple-700 { color: #7e22ce; }
+        .opacity-75 { opacity: 0.75; }
+
+        /* ---------- BACKGROUNDS ---------- */
+        .bg-white { background-color: #ffffff; }
+        .bg-gray-50 { background-color: #f9fafb; }
+        .bg-gray-100 { background-color: #f3f4f6; }
+        .bg-red-50 { background-color: #fef2f2; }
+        .bg-red-100 { background-color: #fee2e2; }
+        .bg-green-50 { background-color: #f0fdf4; }
+        .bg-green-100 { background-color: #dcfce7; }
+        .bg-blue-50 { background-color: #eff6ff; }
+        .bg-blue-100 { background-color: #dbeafe; }
+        .bg-yellow-50 { background-color: #fefce8; }
+        .bg-purple-100 { background-color: #f3e8ff; }
+        .bg-blue-800 { background-color: #1e40af; }
+        .bg-red-600 { background-color: #dc2626; }
+        .bg-green-600 { background-color: #059669; }
+
+        /* ---------- CONTAINERS & LAYOUT ---------- */
+        .container {
+            width: 100%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 640px) {
+            .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .max-w-2xl { max-width: 42rem; }
+        .max-w-3xl { max-width: 48rem; }
+        .max-w-4xl { max-width: 56rem; }
+        .max-w-6xl { max-width: 72rem; }
+        .max-w-md { max-width: 28rem; }
+        .max-w-lg { max-width: 32rem; }
+        .max-w-xs { max-width: 20rem; }
+
+        /* ---------- FLEX ---------- */
+        .flex { display: flex; }
+        .inline-flex { display: inline-flex; }
+        .flex-col { flex-direction: column; }
+        .flex-row { flex-direction: row; }
+        .flex-wrap { flex-wrap: wrap; }
+        .items-start { align-items: flex-start; }
+        .items-center { align-items: center; }
+        .justify-start { justify-content: flex-start; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-end { justify-content: flex-end; }
+        .gap-1 { gap: 0.25rem; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-3 { gap: 0.75rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .gap-8 { gap: 2rem; }
+        .space-y-1 > * + * { margin-top: 0.25rem; }
+        .space-y-2 > * + * { margin-top: 0.5rem; }
+        .space-y-3 > * + * { margin-top: 0.75rem; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        .space-x-2 > * + * { margin-left: 0.5rem; }
+        .space-x-4 > * + * { margin-left: 1rem; }
+        .space-x-8 > * + * { margin-left: 2rem; }
+
+        /* ---------- GRID ---------- */
+        .grid { display: grid; }
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        @media (min-width: 768px) {
+            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .md\:flex-row { flex-direction: row; }
+            .md\:w-1\/2 { width: 50%; }
+            .md\:mb-0 { margin-bottom: 0; }
+            .md\:block { display: block; }
+            .md\:hidden { display: none; }
+            .md\:text-5xl { font-size: 3rem; }
+        }
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+        }
+        .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+        /* ---------- SPACING (padding & margin) ---------- */
+        .p-0 { padding: 0; }
+        .p-1 { padding: 0.25rem; }
+        .p-2 { padding: 0.5rem; }
+        .p-3 { padding: 0.75rem; }
+        .p-4 { padding: 1rem; }
+        .p-5 { padding: 1.25rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-8 { padding: 2rem; }
+        .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .px-10 { padding-left: 2.5rem; padding-right: 2.5rem; }
+        .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+        .py-1\.5 { padding-top: 0.375rem; padding-bottom: 0.375rem; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-5 { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+        .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+        .py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+        .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .pt-6 { padding-top: 1.5rem; }
+        .pb-16 { padding-bottom: 4rem; }
+        .pb-6 { padding-bottom: 1.5rem; }
+        .mb-0 { margin-bottom: 0; }
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-5 { margin-bottom: 1.25rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-10 { margin-bottom: 2.5rem; }
+        .mb-12 { margin-bottom: 3rem; }
+        .mb-16 { margin-bottom: 4rem; }
+        .mt-1 { margin-top: 0.25rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-3 { margin-top: 0.75rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .mt-8 { margin-top: 2rem; }
+        .mr-1 { margin-right: 0.25rem; }
+        .mr-2 { margin-right: 0.5rem; }
+        .mr-3 { margin-right: 0.75rem; }
+        .mr-4 { margin-right: 1rem; }
+        .ml-2 { margin-left: 0.5rem; }
+        .ml-3 { margin-left: 0.75rem; }
+
+        /* ---------- DISPLAY ---------- */
+        .block { display: block; }
+        .inline-block { display: inline-block; }
+        .hidden { display: none; }
+        .inline { display: inline; }
+        @media (min-width: 768px) {
+            .md\:block { display: block; }
+            .md\:hidden { display: none; }
+        }
+
+        /* ---------- WIDTH / HEIGHT ---------- */
+        .w-full { width: 100%; }
+        .w-1\/2 { width: 50%; }
+        .w-3\/4 { width: 75%; }
+        .w-12 { width: 3rem; }
+        .h-12 { height: 3rem; }
+        .h-16 { height: 4rem; }
+        .h-32 { height: 8rem; }
+        .max-w-full { max-width: 100%; }
+        .object-cover { object-fit: cover; }
+
+        /* ---------- BORDERS & RADIUS ---------- */
+        .rounded { border-radius: 0.25rem; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded-2xl { border-radius: 1rem; }
+        .rounded-full { border-radius: 9999px; }
+        .rounded-r-lg { border-top-right-radius: 0.5rem; border-bottom-right-radius: 0.5rem; }
+        .border { border-width: 1px; }
+        .border-0 { border: 0; }
+        .border-t { border-top-width: 1px; }
+        .border-b { border-bottom-width: 1px; }
+        .border-l-4 { border-left-width: 4px; }
+        .border-gray-200 { border-color: #e5e7eb; }
+        .border-gray-300 { border-color: #d1d5db; }
+        .border-red-100 { border-color: #fee2e2; }
+        .border-red-200 { border-color: #fecaca; }
+        .border-red-600 { border-color: #dc2626; }
+        .border-green-100 { border-color: #dcfce7; }
+        .border-green-200 { border-color: #bbf7d0; }
+        .border-blue-200 { border-color: #bfdbfe; }
+        .border-yellow-200 { border-color: #fef08a; }
+        .border-yellow-500 { border-color: #eab308; }
+
+        /* ---------- SHADOWS ---------- */
+        .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+        .shadow { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1); }
+        .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); }
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); }
+        .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
+        .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+
+        /* ---------- TRANSITIONS ---------- */
+        .transition-all { transition: all 0.3s ease; }
+        .transition-transform { transition: transform 0.3s ease; }
+        .duration-300 { transition-duration: 300ms; }
+        .rotate-180 { transform: rotate(180deg); }
+
+        /* ---------- HOVER ---------- */
+        .hover\:bg-gray-50:hover { background-color: #f9fafb; }
+        .hover\:text-gray-800:hover { color: #1f2937; }
+        .hover\:underline:hover { text-decoration: underline; }
+
+        /* ---------- SCROLL SNAP ---------- */
+        .scroll-snap-x { scroll-snap-type: x mandatory; }
+        .scroll-snap-start { scroll-snap-align: start; }
+
+        /* ---------- BACKDROP & SPECIAL ---------- */
+        .backdrop-blur {
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+        }
+
+        /* ---------- CUSTOM COMPONENTS (keeping original vision) ---------- */
         .hero-gradient {
             background: linear-gradient(135deg, #1e1b4b 0%, #ffffff 100%);
         }
-
         .cta-primary {
             background-color: #dc2626;
             color: white;
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(220, 38, 38, 0.3);
+            display: inline-block;
+            font-weight: 700;
+            cursor: pointer;
         }
-
         .cta-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 8px rgba(220, 38, 38, 0.4);
         }
-
         .cta-blue {
             background-color: #1e40af;
             color: white;
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(30, 64, 175, 0.3);
+            display: inline-block;
+            font-weight: 700;
+            cursor: pointer;
         }
-
         .cta-blue:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 8px rgba(30, 64, 175, 0.4);
         }
-
         .cta-green {
             background-color: #059669;
             color: white;
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(5, 150, 105, 0.3);
+            display: inline-block;
+            font-weight: 700;
+            cursor: pointer;
         }
-
         .cta-green:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 8px rgba(5, 150, 105, 0.4);
@@ -86,11 +353,9 @@
             flex: 0 0 300px;
             scroll-snap-align: start;
         }
-
         .testimonial-card:hover {
             transform: translateY(-5px);
         }
-
         .testimonial-carousel {
             display: flex;
             overflow-x: auto;
@@ -109,31 +374,25 @@
             justify-content: center;
             margin-bottom: 15px;
         }
-
         .value-card {
             transition: all 0.3s ease;
         }
-
         .value-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-
         .value-card-compact {
             padding: 0.75rem;
         }
-
         .value-card-compact h3 {
             font-size: 1rem;
             margin-bottom: 0.5rem;
         }
-
         .value-card-compact p {
             font-size: 0.75rem;
             margin-bottom: 0.5rem;
             line-height: 1.3;
         }
-
         .value-card-compact .feature-icon {
             width: 32px;
             height: 32px;
@@ -144,92 +403,66 @@
         .guarantee-section {
             background: linear-gradient(135deg, #dcfce7 0%, #ffffff 100%);
         }
-
         .counter {
             animation: countUp 1s ease-out;
         }
-
         @keyframes countUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
         .trust-section {
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         }
-
         .payment-logo {
             height: 40px;
             object-fit: contain;
             filter: grayscale(100%) contrast(0.5);
             transition: all 0.3s ease;
         }
-
         .payment-logo-large {
             height: 56px;
             filter: none;
         }
-
         .payment-logo:hover {
             filter: none;
         }
-
         .ssl-badge {
             font-size: 0.75rem;
             padding-top: 4px;
         }
-
         .ssl-badge i {
             font-size: 0.9em;
             margin-right: 4px;
         }
-
         .warning-box {
             border-left: 4px solid #dc2626;
             background-color: #fef2f2;
         }
-
         .control-box {
             border-left: 4px solid #059669;
             background-color: #f0fdf4;
         }
-
         .fact-box {
             border-left: 4px solid #b91c1c;
             background: linear-gradient(145deg, #fee2e2 0%, #fff5f5 100%);
             box-shadow: 0 10px 15px -3px rgba(185, 28, 28, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
-
         .last-section {
             background: linear-gradient(145deg, #0b1e3a 0%, #1a2f4f 50%, #2a3f5f 100%);
             position: relative;
             overflow: hidden;
             color: #f0f4fa;
         }
-
         .last-section::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.05"><polygon points="0,0 100,0 50,100" fill="white"/></svg>');
             background-size: cover;
             pointer-events: none;
         }
-
-        .last-section .content {
-            position: relative;
-            z-index: 2;
-        }
-
+        .last-section .content { position: relative; z-index: 2; }
         .last-section .cta-glow {
             background: linear-gradient(145deg, #fbbf24, #f59e0b);
             color: #0b1e3a;
@@ -238,61 +471,47 @@
             transition: all 0.3s ease;
             border: none;
         }
-
         .last-section .cta-glow:hover {
             transform: scale(1.05);
             box-shadow: 0 15px 30px -5px rgba(245, 158, 11, 0.7);
             background: linear-gradient(145deg, #fcd34d, #fbbf24);
         }
-
         .category-card {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 215, 0, 0.2);
             transition: all 0.2s ease;
         }
-
         .category-card:hover {
             border-color: rgba(255, 215, 0, 0.5);
             background: rgba(255, 255, 255, 0.12);
         }
-
         .last-section .badge-icon {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 40px;
             padding: 0.25rem 0.75rem;
             backdrop-filter: blur(4px);
         }
-
         .bonus-list-item {
             display: flex;
             align-items: center;
             padding: 0.5rem 0;
             border-bottom: 1px dashed #e5e7eb;
         }
+        .bonus-list-item:last-child { border-bottom: none; }
 
-        .bonus-list-item:last-child {
-            border-bottom: none;
-        }
-
+        /* ---------- BOOK & AUDIO PREVIEW ENHANCED ---------- */
         .book-preview-popup {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.9);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.9);
             z-index: 1002;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
-
-        .book-preview-popup.active {
-            display: flex;
-        }
-
+        .book-preview-popup.active { display: flex; }
         .book-preview-content {
             background: white;
             width: 100%;
@@ -303,25 +522,20 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
         }
-
         .book-preview-iframe-wrapper {
             flex: 1;
             width: 100%;
             position: relative;
             background: #f1f5f9;
         }
-
         .book-preview-iframe-wrapper iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             border: 0;
         }
-
         .book-preview-footer {
             padding: 12px 20px;
             background: white;
@@ -329,7 +543,20 @@
             display: flex;
             justify-content: flex-end;
         }
-
+        .book-preview-close {
+            position: absolute;
+            top: 16px; right: 16px;
+            background: white;
+            border: none;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
         .book-preview-done-btn {
             background-color: #2563eb;
             color: white;
@@ -343,68 +570,56 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
+        .book-preview-done-btn:hover { background-color: #1d4ed8; transform: scale(1.02); }
 
-        .book-preview-done-btn:hover {
-            background-color: #1d4ed8;
-            transform: scale(1.02);
-        }
-
-        .book-preview-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: white;
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
+        /* Professional preview buttons (Look Inside / Sample) */
+        .preview-btn {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            gap: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            background: white;
+            border: 2px solid #2563eb;
+            color: #2563eb;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
         }
-
-        .video-player-wrapper {
-            background: #0f172a;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid #334155;
+        .preview-btn:hover {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 4px 8px rgba(37,99,235,0.25);
         }
+        .preview-btn i { font-size: 1em; }
 
-        .video-player-wrapper video {
-            width: 100%;
-            display: block;
-            border-radius: 0;
-        }
-
+        /* ---------- MOBILE RESPONSIVE FIXES ---------- */
         @media (max-width: 640px) {
-            body {
-                font-size: 14px;
-                padding-bottom: 40px;
+            body { font-size: 14px; padding-bottom: 40px; }
+            .container { padding-left: 0.75rem; padding-right: 0.75rem; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .payment-logo { height: 32px; }
+            .payment-logo-large { height: 44px; }
+            .book-preview-content { height: 70vh; }
+            /* Buttons full-width & larger on mobile */
+            .cta-primary,
+            .cta-blue,
+            .cta-green {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 1rem 1.5rem;
+                font-size: 1.25rem;
             }
-            .container {
-                padding-left: 0.75rem;
-                padding-right: 0.75rem;
-            }
-            h1 {
-                font-size: 2rem;
-            }
-            h2 {
-                font-size: 1.5rem;
-            }
-            .payment-logo {
-                height: 32px;
-            }
-            .payment-logo-large {
-                height: 44px;
-            }
-            .book-preview-content {
-                height: 70vh;
+            .preview-btn {
+                width: auto;
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -421,7 +636,7 @@
         });
     </script>
 
-    <!-- Book Preview Popup (src loaded on click) -->
+    <!-- Book Preview Popup (src loaded on click / preloaded after load) -->
     <div id="bookPreviewPopup" class="book-preview-popup" onclick="closeBookPreview(event)">
         <div class="book-preview-content" onclick="event.stopPropagation()">
             <button class="book-preview-close" onclick="closeBookPreview()"><i class="fas fa-times text-gray-700"></i></button>
@@ -441,7 +656,7 @@
         </div>
     </div>
 
-    <!-- Hero Section (unchanged structure, images optimized) -->
+    <!-- Hero Section -->
     <section class="trust-section pt-6 pb-16 px-4">
         <div class="container mx-auto max-w-6xl">
             <div class="flex flex-col md:flex-row items-center">
@@ -582,7 +797,7 @@
         </div>
     </section>
 
-    <!-- Resources Validated Section (images lazy loaded) -->
+    <!-- Resources Validated Section -->
     <section class="py-8 bg-white border-t border-b border-gray-200">
         <div class="container mx-auto max-w-6xl px-4">
             <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
@@ -609,7 +824,7 @@
         </div>
     </section>
 
-    <!-- Testimonials Section (images lazy) -->
+    <!-- Testimonials Section -->
     <section class="py-20 bg-white px-4">
         <div class="container mx-auto max-w-6xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-2">What Professional Women Say:</h2>
@@ -747,34 +962,34 @@
         </div>
     </section>
 
-    <!-- What You'll Get Inside Section (images lazy) -->
+    <!-- What You'll Get Inside Section (preview buttons enhanced) -->
     <section id="whats-inside" class="py-20 bg-blue-50 px-4">
         <div class="container mx-auto max-w-6xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Your Complete Perimenopause Performance System</h2>
             <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">Not symptom tracking. Not wellness advice. An operational system for maintaining executive function, professional credibility, and privacy during the menopausal transition.</p>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-3 mb-12">
-                <!-- CARD 1: EBOOK (now with preview button) -->
+                <!-- CARD 1: EBOOK (professional preview button) -->
                 <div class="value-card value-card-compact bg-white p-3 rounded-xl shadow-md">
                     <img src="images/ebookmockup.webp" alt="Ebook Mockup" class="w-3/4 mx-auto rounded-lg mb-2" loading="lazy" decoding="async">
                     <p class="text-xs text-gray-400 italic text-center mb-1">Delivered digitally</p>
                     <h3 class="text-sm font-bold mb-1 text-blue-800">THE BUSY WOMAN'S PERIMENOPAUSE EBOOK</h3>
                     <p class="text-gray-600 text-xs mb-2">200+ page operational bible. Every protocol, script, and framework to keep your edge at work — searchable, private, instant.</p>
                     <div class="text-center mb-1">
-                        <button onclick="openBookPreview()" class="text-xs text-blue-600 hover:underline font-medium inline-flex items-center gap-1">
+                        <button onclick="openBookPreview()" class="preview-btn">
                             <i class="fas fa-book-open"></i> Look Inside
                         </button>
                     </div>
                     <div class="text-right text-xs font-bold text-gray-500">Value $97</div>
                 </div>
-                <!-- CARD 2: AUDIOBOOK (now with audio sample) -->
+                <!-- CARD 2: AUDIOBOOK (professional sample button) -->
                 <div class="value-card value-card-compact bg-white p-3 rounded-xl shadow-md">
                     <img src="images/audiobookmockup.webp" alt="Audiobook Mockup" class="w-3/4 mx-auto rounded-lg mb-2" loading="lazy" decoding="async">
                     <p class="text-xs text-gray-400 italic text-center mb-1">Delivered digitally</p>
                     <h3 class="text-sm font-bold mb-1 text-blue-800">AUDIOBOOK: PRIVATE COMMUTE COACH</h3>
                     <p class="text-gray-600 text-xs mb-2">2+ hours of invisible coaching. Pre-meeting priming, fog‑day commutes, or nights when reading feels impossible.</p>
                     <div class="text-center mb-1">
-                        <button id="audioSampleBtn" onclick="toggleAudioSample()" class="text-xs text-blue-600 hover:underline font-medium inline-flex items-center gap-1">
+                        <button id="audioSampleBtn" onclick="toggleAudioSample()" class="preview-btn">
                             <i class="fas fa-play"></i> Sample
                         </button>
                     </div>
@@ -836,7 +1051,7 @@
         </div>
     </section>
 
-    <!-- Problem Agitation Section (Book Preview section removed) -->
+    <!-- Problem Agitation Section -->
     <section class="py-20 bg-white px-4">
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">The <span class="text-red-600">Concealment Paradox</span> No One Talks About</h2>
@@ -852,7 +1067,6 @@
                     </ul>
                 </div>
 
-                <!-- Visual break: Pull quote -->
                 <div class="py-6 text-center border-t border-b border-gray-300">
                     <p class="text-xl md:text-2xl font-light italic text-gray-700">“The cognitive effort of hiding symptoms costs more than the symptoms themselves.”</p>
                 </div>
@@ -870,7 +1084,6 @@
                     </div>
                 </div>
 
-                <!-- Visual break: Stat box -->
                 <div class="bg-yellow-50 border-l-4 border-yellow-500 p-5 rounded-r-lg">
                     <div class="flex items-start">
                         <i class="fas fa-chart-bar text-yellow-600 text-2xl mr-3"></i>
@@ -923,7 +1136,7 @@
         </div>
     </section>
 
-    <!-- Authority & Warning Section (unchanged) -->
+    <!-- Authority & Warning Section -->
     <section class="py-20 bg-gray-100 px-4">
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-3xl font-bold text-center mb-6">Why HR, Wellness Apps, and Doctor's Books Can't Save Your Career</h2>
@@ -976,7 +1189,7 @@
         </div>
     </section>
 
-    <!-- Pricing & Guarantee Section (images lazy) -->
+    <!-- Pricing & Guarantee Section -->
     <section id="pricing" class="py-20 guarantee-section px-4">
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Will You Leave Your Career to Chance Or Take Control?</h2>
@@ -1082,7 +1295,7 @@
         </div>
     </section>
 
-    <!-- FAQ Section (unchanged) -->
+    <!-- FAQ Section -->
     <section id="faq" class="py-20 bg-white px-4">
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-2xl font-bold text-center mb-16">Questions Professional Women Are Asking</h2>
@@ -1158,7 +1371,7 @@
         </div>
     </section>
 
-    <!-- Final CTA (unchanged) -->
+    <!-- Final CTA -->
     <section class="py-20 bg-gray-50 px-4">
         <div class="container mx-auto max-w-4xl text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">The Most Dangerous Decision <br>Is Doing Nothing</h2>
@@ -1204,20 +1417,17 @@
     <script>
         // Deferred Digistore promo code (loaded after DOM ready)
         window.addEventListener('DOMContentLoaded', function() {
-            // Load the external script if not already present (defer ensures it's after)
             var digiScript = document.createElement('script');
             digiScript.src = "https://www.digistore24-scripts.com/service/digistore.js";
             digiScript.defer = true;
             document.head.appendChild(digiScript);
 
-            // Call promocode after the script loads
             digiScript.onload = function() {
                 digistorePromocode({
                     "product_id": 692610,
                     "adjust_domain": true
                 });
             };
-            // Fallback if script already loaded via cache
             if (typeof digistorePromocode === 'function') {
                 digistorePromocode({
                     "product_id": 692610,
@@ -1226,12 +1436,12 @@
             }
         });
 
-        // Book Preview Lazy Load
+        // Book Preview Lazy Load (opens popup)
         function openBookPreview() {
             var popup = document.getElementById('bookPreviewPopup');
             var iframe = popup.querySelector('iframe');
             if (iframe && !iframe.src) {
-                iframe.src = iframe.dataset.src;  // load only now
+                iframe.src = iframe.dataset.src;  // fallback if not preloaded
             }
             popup.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1244,7 +1454,7 @@
             }
         }
 
-        // Toggle audiobook sample playback
+        // Toggle audiobook sample
         function toggleAudioSample() {
             var audio = document.getElementById('audioSample');
             if (audio.paused) {
@@ -1281,7 +1491,7 @@
             });
         });
 
-        // Counter & smooth scroll & hover preload
+        // Counter & smooth scroll & checkout preload (mouseenter + window.load)
         document.addEventListener('DOMContentLoaded', function() {
             var counters = document.querySelectorAll('.counter');
             var baseCount = 124;
@@ -1306,13 +1516,27 @@
                 });
             });
 
-            // Aggressive prefetch on hover for checkout
-            var links = document.querySelectorAll('a[href="https://www.checkout-ds24.com/product/692610"]');
+            // Aggressive prefetch on hover for checkout + mouseenter
+            var checkoutUrl = 'https://www.checkout-ds24.com/product/692610';
+            var links = document.querySelectorAll('a[href="' + checkoutUrl + '"]');
             links.forEach(function(link) {
                 link.addEventListener('mouseenter', function() {
-                    fetch('https://www.checkout-ds24.com/product/692610', { mode: 'no-cors', priority: 'low' });
+                    fetch(checkoutUrl, { mode: 'no-cors', priority: 'low' });
                 }, { once: true });
             });
+
+            // Preload checkout page after window load (in queue)
+            window.addEventListener('load', function() {
+                fetch(checkoutUrl, { mode: 'no-cors', priority: 'low' });
+            }, { once: true });
+
+            // Preload book preview iframe after all required elements (on load)
+            window.addEventListener('load', function() {
+                var bookIframe = document.querySelector('#bookPreviewPopup iframe');
+                if (bookIframe && !bookIframe.src && bookIframe.dataset.src) {
+                    bookIframe.src = bookIframe.dataset.src; // background preload
+                }
+            }, { once: true });
         });
     </script>
 
