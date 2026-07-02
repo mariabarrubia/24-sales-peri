@@ -14,6 +14,9 @@
     <link rel="dns-prefetch" href="https://www.checkout-ds24.com">
     <link rel="preload" as="script" href="https://www.checkout-ds24.com/service/digistore.js">
 
+    <!-- Preconnect for promocode script -->
+    <link rel="dns-prefetch" href="https://www.digistore24-scripts.com">
+
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
@@ -22,9 +25,19 @@
 
     <link rel="preload" as="image" href="/images/perimenopause.webp" fetchpriority="high">
 
-    <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
-    <script type="text/javascript">
-    digistorePromocode( { "product_id": 692610, "adjust_domain": true } );
+    <!-- Promocode script will load after DOMContentLoaded – non‑blocking -->
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            var promoS = document.createElement('script');
+            promoS.src = "https://www.digistore24-scripts.com/service/digistore.js";
+            promoS.defer = true;
+            document.head.appendChild(promoS);
+            promoS.onload = function() {
+                if (typeof digistorePromocode === 'function') {
+                    digistorePromocode({ "product_id": 692610, "adjust_domain": true });
+                }
+            };
+        });
     </script>
 
     <style>
@@ -403,7 +416,7 @@
             font-style: normal;
         }
 
-        /* Redesigned disclosure trap box – professional & trustable, keeping red theme */
+        /* Redesigned disclosure trap box */
         .disclosure-trap-box {
             background: rgba(254, 242, 242, 0.7);
             backdrop-filter: blur(6px);
@@ -418,22 +431,28 @@
             box-shadow: 0 8px 12px -3px rgba(220, 38, 38, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
         }
 
-        /* Checkout Popup Styles */
+        /* ---------- CHECKOUT POPUP – fully preloaded, invisible until activated ---------- */
         .checkout-popup-overlay {
-            display: none;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
             background: rgba(0,0,0,0.7);
-            z-index: 10000;
+            z-index: -1;
+            display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease, z-index 0s 0.25s;
         }
         .checkout-popup-overlay.active {
-            display: flex;
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 10000;
+            transition: opacity 0.25s ease, z-index 0s 0s;
         }
         .checkout-popup-content {
             background: white;
@@ -504,7 +523,7 @@
                         <img src="/images/perimenopause.webp" alt="Professional woman at work" class="rounded-xl shadow-2xl w-full" style="max-height: 500px; object-fit: cover;" loading="lazy" decoding="async">
                     </div>
 
-                    <!-- Redesigned disclosure trap box – professional & trustable, same red theme -->
+                    <!-- Redesigned disclosure trap box -->
                     <div class="disclosure-trap-box mb-3 text-sm">
                         <div class="flex items-start gap-3">
                             <div class="flex-shrink-0 w-7 h-7 bg-red-100 rounded-full flex items-center justify-center mt-0.5">
@@ -561,7 +580,7 @@
                     </div>
                     <p class="text-center text-gray-600">100% Risk-Free: 60-Day Money-Back Guarantee</p>
 
-                    <!-- Recrafted Natalie Brandt testimonial – like other testimonials -->
+                    <!-- Recrafted Natalie Brandt testimonial -->
                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100 mt-6">
                         <div class="flex items-center mb-3">
                             <img src="/images/image9.webp" alt="Natalie Brandt" class="w-12 h-12 rounded-full mr-4 object-cover bg-gray-300" loading="lazy" decoding="async">
@@ -1147,18 +1166,38 @@
 
     <audio id="audioSample" src="/audiobooksample.m4a" preload="none"></audio>
 
-    <!-- Checkout Popup Overlay – preloads the embed instantly when a buy button is clicked -->
+    <!-- ---------- CHECKOUT POPUP (full preload – always in DOM, invisible until activated) ---------- -->
     <div id="checkoutPopupOverlay" class="checkout-popup-overlay">
         <div class="checkout-popup-content">
             <button class="checkout-popup-close" onclick="closeCheckoutPopup()">&times;</button>
-            <!-- Begin of digistore multi-step order box code (product 692610) -->
-            <script src="https://www.checkout-ds24.com/service/digistore.js"></script>
-            <my-order-form product-id="692610" order-form-id="242231" base-url="https://www.checkout-ds24.com"></my-order-form>
-            <!-- End of digistore multi-step order box code -->
+            <!-- Wrapper hidden until the custom element is defined, preventing partial render -->
+            <div id="checkoutEmbedWrapper" style="visibility: hidden; opacity: 0; transition: opacity 0.15s;">
+                <!-- Begin of digistore multi-step order box code (product 692610) -->
+                <script src="https://www.checkout-ds24.com/service/digistore.js"></script>
+                <my-order-form product-id="692610" order-form-id="242231" base-url="https://www.checkout-ds24.com"></my-order-form>
+                <!-- End of digistore multi-step order box code -->
+            </div>
         </div>
     </div>
 
     <script>
+        // Reveal checkout embed once the custom element is fully defined (no more half-loaded state)
+        (function() {
+            function revealEmbed() {
+                var wrapper = document.getElementById('checkoutEmbedWrapper');
+                if (wrapper) {
+                    wrapper.style.visibility = 'visible';
+                    wrapper.style.opacity = '1';
+                }
+            }
+            if (window.customElements && customElements.whenDefined) {
+                customElements.whenDefined('my-order-form').then(revealEmbed).catch(revealEmbed);
+            } else {
+                // Fallback for older browsers
+                window.addEventListener('load', revealEmbed);
+            }
+        })();
+
         function openBookPreview() {
             var popup = document.getElementById('bookPreviewPopup');
             var iframe = popup.querySelector('iframe');
@@ -1185,7 +1224,7 @@
             }
         }
 
-        // Checkout Popup functions
+        // Checkout Popup – uses class‑based activation (overlay is always present but invisible)
         function openCheckoutPopup(e) {
             e.preventDefault();
             document.getElementById('checkoutPopupOverlay').classList.add('active');
@@ -1267,4 +1306,4 @@
     </footer>
 
 </body>
-</html>
+        </html>
