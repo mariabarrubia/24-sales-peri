@@ -3,19 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Promocode script placed as high as possible for perfect tracking – do not alter -->
+    <!-- Promocode script placed as high as possible for perfect tracking – static loading, no DOMContentLoaded -->
+    <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
     <script>
-        window.addEventListener('DOMContentLoaded', function() {
-            var promoS = document.createElement('script');
-            promoS.src = "https://www.digistore24-scripts.com/service/digistore.js";
-            promoS.defer = true;
-            document.head.appendChild(promoS);
-            promoS.onload = function() {
-                if (typeof digistorePromocode === 'function') {
-                    digistorePromocode({ "product_id": 692610, "adjust_domain": true });
-                }
-            };
-        });
+        digistorePromocode({ product_id: 692610, adjust_domain: true });
     </script>
     <title>The Perimenopause Performance System: Protect Your Edge Without Disclosure</title>
 
